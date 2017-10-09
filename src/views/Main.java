@@ -7,7 +7,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.DialogPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -51,7 +50,6 @@ public class Main extends Application {
         loader.setController(new MainController());
         Parent root = loader.load();
         _mainScene = new Scene(root, 600, 550);
-//        _mainScene.getStylesheets().add(getClass().getResource("../resources/mainStyle.css").toExternalForm());
     }
 
     //Window prompt when X button is pressed

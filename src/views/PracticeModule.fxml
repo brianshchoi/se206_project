@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="550.0" maxWidth="600.0" minHeight="550.0" minWidth="600.0" prefHeight="550.0" prefWidth="600.0" style="-fx-background-color: #ffdeaa;" stylesheets="@../resources/mainStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
+   <children>
+      <ImageView fitHeight="550.0" fitWidth="600.0" pickOnBounds="true" style="-fx-opacity: 0.1;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../resources/background.png" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="MainMenu" layoutX="2.0" layoutY="-1.0" prefHeight="344.0" prefWidth="600.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label alignment="CENTER" layoutX="2.0" layoutY="45.0" prefHeight="100.0" prefWidth="600.0" text="Tātai!" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <padding>
+                  <Insets left="15.0" right="15.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font name="KacstOne Bold" size="59.0" />
+               </font>
+            </Label>
+            <Label alignment="TOP_CENTER" layoutX="-2.0" layoutY="87.0" prefHeight="240.0" prefWidth="600.0" text="Learn and practise your Māori numbers between 1~9 and 1~99. &#10;You will be tested on your ability to correctly pronounce Māori numbers. &#10;You will be given two chances to correctly pronounce the numbers, and tested out of 10.&#10;&#10;&#10;There will be two levels. An easy level from numbers 1 to 9, and a harder level from 1 to 99. If you score over 8 on the easy level, there will be an option to continue to the harder level. &#10;&#10;&#10;Please select one of the levels below:&#10;" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
+               <padding>
+                  <Insets left="30.0" right="30.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <GridPane layoutY="407.0" prefHeight="200.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Button fx:id="hardButton" maxHeight="120.0" maxWidth="140.0" minHeight="120.0" minWidth="140.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="120.0" prefWidth="140.0" text="Play&#10;Hard&#10;1~99" textAlignment="CENTER" translateX="70.0" GridPane.columnIndex="1">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <font>
+                  <Font name="DejaVu Sans Condensed Bold" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="easyButton" maxHeight="120.0" maxWidth="140.0" minHeight="120.0" minWidth="140.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="120.0" prefWidth="140.0" text="Play&#10;Easy&#10;1~9" textAlignment="CENTER" translateX="70.0" wrapText="true">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <font>
+                  <Font name="DejaVu Sans Condensed Bold" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </GridPane>
+   </children>
+</AnchorPane>
