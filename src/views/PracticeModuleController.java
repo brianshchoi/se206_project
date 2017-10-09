@@ -19,6 +19,8 @@ import java.util.ResourceBundle;
 
 public class PracticeModuleController implements Initializable{
 
+    private static Main instance = Main.getInstance();
+
     @FXML
     private Button easyButton;
     @FXML
@@ -55,6 +57,11 @@ public class PracticeModuleController implements Initializable{
 
         window.setScene(playScene);
         window.show();
+    }
+
+    @FXML
+    private void mainMenuButtonPressed(ActionEvent event){
+        instance.setMainScene();
     }
 
     @Override
