@@ -1,0 +1,49 @@
+/* Button CSS values for all buttons*/
+.button {
+    -fx-background-color:rgba(219, 167, 81, 0.7);
+    -fx-background-radius: 30;
+}
+
+.button: hover {
+    -fx-background-color:rgba(235, 184, 102, 0.75);
+}
+
+.button: pressed {
+    -fx-background-color:rgba(235, 184, 102, 0.9);
+}
+
+/* Dialog CSS values for alerts*/
+.dialog-pane:header .header-panel {
+    -fx-background-color: #ffdeaa;
+}
+.dialog-pane {
+    -fx-background-color: #ffdeaa;
+}
+
+/* Table CSS Values for scoreboard*/
+.table-view {
+    -fx-background-color: #ffdeaa;
+}
+
+
+
+.table-view .column-header-background{
+    -fx-background-color: linear-gradient(#131313 0%, #424141 100%);
+}
+
+
+.table-view .column-header-background .label{
+    -fx-background-color: #ffdeaa;
+}
+
+.table-row-cell{
+    -fx-background-color: -fx-table-cell-border-color, rgba(219, 167, 81, 0.7);
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+
+.table-row-cell:odd{
+    -fx-background-color: -fx-table-cell-border-color, rgba(235, 184, 102, 0.75);
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
