@@ -48,7 +48,7 @@ public class Main extends Application {
 
     //Creates the main menu scene which is only created once so that it can be accessed from any other scene.
     private void createMainScene() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/main.fxml"));
         loader.setController(new MainController());
         Parent root = loader.load();
         _mainScene = new Scene(root, 600, 550);

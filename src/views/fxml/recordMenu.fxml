@@ -11,13 +11,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="600.0" stylesheets="@../resources/mainStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="600.0" stylesheets="@../../resources/mainStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
     <children>
         <AnchorPane fx:id="MainMenu" layoutX="2.0" layoutY="-1.0" prefHeight="550.0" prefWidth="600.0" style="-fx-background-color: #ffdeaa;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <ImageView fitHeight="550.0" fitWidth="600.0" pickOnBounds="true" style="-fx-opacity: 0.1;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <image>
-                        <Image url="@../resources/background.png" />
+                        <Image url="@../../resources/background.png" />
                     </image>
                 </ImageView>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="241.0" prefWidth="600.0" AnchorPane.bottomAnchor="309.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -43,7 +43,7 @@
                             <graphic>
                                 <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../resources/microphone-128x128.png" />
+                                        <Image url="@../../resources/microphone-128x128.png" />
                                     </image>
                                 </ImageView>
                             </graphic>

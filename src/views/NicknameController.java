@@ -20,27 +20,23 @@ import java.util.regex.Pattern;
 
 public class NicknameController implements Initializable {
 
-    private String _nickname;
+    private String _name;
 
     @FXML
-    private TextField _nickNameField;
+    private TextField _nameField;
     @FXML
     private Label _errorLabel;
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
 
-    }
 
     @FXML
     private void submitButtonPressed(ActionEvent event){
-        String nickname = _nickNameField.getText();
+        String name = _nameField.getText();
 
-        if (noSpecialCharacters(nickname)){
-            _nickname = nickname;
-
+        if (noSpecialCharacters(name)){
+            _name = name;
             //go to next select difficulty scene
             try {
-                goToNextScene(event);
+                goToDifficultyScene(event);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -49,21 +45,21 @@ public class NicknameController implements Initializable {
             _errorLabel.setText("ERROR no special characters allowed. Please try again");
         }
 
-        System.out.println(_nickname);
+        System.out.println(_name);
     }
 
-    private void goToNextScene(ActionEvent event) throws IOException {
+    private void goToDifficultyScene(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         Scene playScene;
         Stage window;
 
-        loader.setLocation(getClass().getResource("MathsDifficultyScene.fxml"));
-        loader.setController(new MathsDifficultyController());
+        loader.setLocation(getClass().getResource("fxml/PracticeDifficulty.fxml"));
+        loader.setController(new MathsDifficultyController(_name));
         Parent view = loader.load();
         playScene = new Scene(view);
         window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setWidth(500);
-        window.setHeight(300);
+        window.setWidth(550);
+        window.setHeight(600);
         window.setScene(playScene);
         window.show();
     }
@@ -78,5 +74,9 @@ public class NicknameController implements Initializable {
         } else {
             return true;
         }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
     }
 }

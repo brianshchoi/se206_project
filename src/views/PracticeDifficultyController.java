@@ -11,25 +11,28 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PracticeModuleController implements Initializable{
+public class PracticeDifficultyController implements Initializable{
 
-    private static Main instance = Main.getInstance();
+    protected static Main instance = Main.getInstance();
 
     @FXML
     protected Button easyButton, hardButton;
-    private ObservableList<Table> data;
+    @FXML
+    protected Label titleLabel;
+    protected ObservableList<Table> data;
 
     /*
     Button handler for when "easy" or "hard" is pressed
      */
     @FXML
-    private void playButtonPressed(ActionEvent event) throws IOException {
+    protected void playButtonPressed(ActionEvent event) throws IOException {
         //Create new scoreboard
         data = FXCollections.observableArrayList();
 
@@ -59,7 +62,7 @@ public class PracticeModuleController implements Initializable{
     Button handler for when main menu button is pressed. Switches back to main menu
      */
     @FXML
-    private void mainMenuButtonPressed(ActionEvent event){
+    protected void mainMenuButtonPressed(ActionEvent event){
         instance.setMainScene();
     }
 
@@ -67,12 +70,12 @@ public class PracticeModuleController implements Initializable{
     Button handler for when help button is pressed. Shows the
      */
     @FXML
-    private void helpButtonPressed(ActionEvent event){
+    protected void helpButtonPressed(ActionEvent event){
         //TODO show
         System.out.println("test");
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        titleLabel.setText("Tatai Practice Module");
     }
 }

@@ -117,7 +117,7 @@ public class RecordMenuController {
     @FXML
     private void scorePressed(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("scoreBoard.fxml"));
+        loader.setLocation(getClass().getResource("fxml/scoreBoard.fxml"));
         loader.setController(new ScoreBoard());
         Parent view = loader.load();
 
@@ -156,7 +156,7 @@ public class RecordMenuController {
 
 
                     FXMLLoader loader = new FXMLLoader();
-                    loader.setLocation(getClass().getResource("correctness.fxml"));
+                    loader.setLocation(getClass().getResource("fxml/correctness.fxml"));
                     loader.setController(new CorrectnessController());
                     Parent view = loader.load();
 

@@ -34,7 +34,7 @@
          <children>
             <AnchorPane fx:id="MainMenu" prefHeight="257.0" prefWidth="300.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <children>
-                  <Label alignment="CENTER" layoutX="71.0" layoutY="80.0" prefHeight="138.0" prefWidth="600.0" text="Tātai!" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <Label fx:id="titleLabel" alignment="CENTER" layoutX="71.0" layoutY="80.0" prefHeight="138.0" prefWidth="600.0" text="Tātai!" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <padding>
                         <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                      </padding>
