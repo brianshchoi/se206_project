@@ -22,18 +22,14 @@ public class PracticeModuleController implements Initializable{
     private static Main instance = Main.getInstance();
 
     @FXML
-    private Button easyButton;
-    @FXML
-    private Button hardButton;
-
+    private Button easyButton, hardButton;
     private ObservableList<Table> data;
 
     /*
-    When this method is called, it will invoke random number to be generated
-    to be displayed in the play view.
+    Button handler for when "easy" or "hard" is pressed
      */
     @FXML
-    private void buttonPressed(ActionEvent event) throws IOException {
+    private void playButtonPressed(ActionEvent event) throws IOException {
         //Create new scoreboard
         data = FXCollections.observableArrayList();
 
@@ -59,11 +55,22 @@ public class PracticeModuleController implements Initializable{
         window.show();
     }
 
+    /*
+    Button handler for when main menu button is pressed. Switches back to main menu
+     */
     @FXML
     private void mainMenuButtonPressed(ActionEvent event){
         instance.setMainScene();
     }
 
+    /*
+    Button handler for when help button is pressed. Shows the
+     */
+    @FXML
+    private void helpButtonPressed(ActionEvent event){
+        //TODO show
+        System.out.println("test");
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

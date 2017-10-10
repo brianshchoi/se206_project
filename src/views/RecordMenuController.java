@@ -24,17 +24,9 @@ import java.util.Optional;
 
 public class RecordMenuController {
     @FXML
-    private Button mainMenuButton;
+    private Button mainMenuButton, recordButton, scoreButton;
     @FXML
-    private Button recordButton;
-    @FXML
-    private Button scoreButton;
-    @FXML
-    private Label number;
-    @FXML
-    private Label round;
-    @FXML
-    private Label info;
+    private Label number, round, info;
 
     private int playingNumber;
     private int roundNumber;
