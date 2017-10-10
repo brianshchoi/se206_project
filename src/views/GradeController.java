@@ -46,15 +46,17 @@ public class GradeController implements Initializable{
 
     private int score;
     private boolean hardLevel;
+    private boolean mathAid;
     private static Main instance = Main.getInstance();
     private final static int easyToHardBoundary = 8;
     private final static int numQuestions = 10;
 
     final ObservableList<Table> data = FXCollections.observableArrayList();
 
-    public void initData(int score, boolean hardLevel, ObservableList<Table> table){
+    public void initData(int score, boolean hardLevel, ObservableList<Table> table, boolean mathAid){
         this.score = score;
         this.hardLevel = hardLevel;
+        this.mathAid = mathAid;
         data.addAll(table);
     }
 
@@ -87,9 +89,9 @@ public class GradeController implements Initializable{
         RecordMenuController controller = loader.getController();
 
         if (event.getSource().equals(playAgainEasy)){
-            controller.initData(1,0,false, newData);
+            controller.initData(1,0,false, newData, mathAid);
         } else if (event.getSource().equals(playAgainHard)){
-            controller.initData(1,0,true, newData);
+            controller.initData(1,0,true, newData, mathAid);
         }
         controller.setData();
 

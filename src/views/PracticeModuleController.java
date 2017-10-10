@@ -42,9 +42,9 @@ public class PracticeModuleController implements Initializable{
         // Access the play view controller and call initData method
         RecordMenuController controller = loader.getController();
         if (event.getSource().equals(easyButton)) {
-            controller.initData(1, 0, false, data);
+            controller.initData(1, 0, false, data,false);
         } else if (event.getSource().equals(hardButton)) {
-            controller.initData(1, 0, true, data);
+            controller.initData(1, 0, true, data,false);
         }
 
         controller.setData();
