@@ -22,7 +22,7 @@ public class PracticeModuleController implements Initializable{
     private static Main instance = Main.getInstance();
 
     @FXML
-    private Button easyButton, hardButton;
+    protected Button easyButton, hardButton;
     private ObservableList<Table> data;
 
     /*
@@ -34,7 +34,7 @@ public class PracticeModuleController implements Initializable{
         data = FXCollections.observableArrayList();
 
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("recordMenu.fxml"));
+        loader.setLocation(getClass().getResource("fxml/recordMenu.fxml"));
         loader.setController(new RecordMenuController());
         Parent view = loader.load();
         Scene playScene = new Scene(view);
