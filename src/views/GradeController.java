@@ -1,5 +1,6 @@
 package views;
 
+import commons.userTable;
 import commons.Table;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,6 +20,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class GradeController implements Initializable{
@@ -32,32 +36,33 @@ public class GradeController implements Initializable{
 
     //Define table for grade
     @FXML
-    TableView<Table> gradeTable;
+    TableView<userTable> gradeTable;
     @FXML
-    TableColumn<Table, Integer> iQuestion;
+    TableColumn<userTable, Integer> iTotal;
     @FXML
-    TableColumn<Table, Integer> iNumber;
+    TableColumn<userTable, String> iNickname;
     @FXML
-    TableColumn<Table, String> iCorrect;
-    @FXML
-    TableColumn<Table, String> iUserRecording;
-    @FXML
-    TableColumn<Table, String> iMaori;
+    TableColumn<userTable, String> iDate;
 
     private int score;
+    private String nickname;
     private boolean hardLevel;
     private boolean mathAid;
     private static Main instance = Main.getInstance();
     private final static int easyToHardBoundary = 8;
     private final static int numQuestions = 10;
 
-    final ObservableList<Table> data = FXCollections.observableArrayList();
+    final ObservableList<userTable> data = FXCollections.observableArrayList();
 
-    public void initData(int score, boolean hardLevel, ObservableList<Table> table, boolean mathAid){
+    public void initData(int score, boolean hardLevel, boolean mathAid, String nickname){
         this.score = score;
         this.hardLevel = hardLevel;
         this.mathAid = mathAid;
-        data.addAll(table);
+        this.nickname = nickname;
+        Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("yy-mm-dd hh:mm");
+        String strDate = dateFormat.format(date);
+        data.add(new userTable(score, nickname, strDate));
     }
 
     public void setData(){
@@ -89,9 +94,9 @@ public class GradeController implements Initializable{
         RecordMenuController controller = loader.getController();
 
         if (event.getSource().equals(playAgainEasy)){
-            controller.initData(1,0,false, newData, mathAid);
+            controller.initData(1,0,false, newData, mathAid, nickname);
         } else if (event.getSource().equals(playAgainHard)){
-            controller.initData(1,0,true, newData, mathAid);
+            controller.initData(1,0,true, newData, mathAid, nickname);
         }
         controller.setData();
 
@@ -104,11 +109,9 @@ public class GradeController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        iQuestion.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Question"));
-        iNumber.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Number"));
-        iCorrect.setCellValueFactory(new PropertyValueFactory<Table, String>("Correct"));
-        iUserRecording.setCellValueFactory(new PropertyValueFactory<Table, String>("UserRecording"));
-        iMaori.setCellValueFactory(new PropertyValueFactory<Table, String>("Maori"));
+        iTotal.setCellValueFactory(new PropertyValueFactory<userTable, Integer>("Total"));
+        iNickname.setCellValueFactory(new PropertyValueFactory<userTable, String>("Nickname"));
+        iDate.setCellValueFactory(new PropertyValueFactory<userTable, String>("Date"));
         gradeTable.setItems(data);
     }
 }

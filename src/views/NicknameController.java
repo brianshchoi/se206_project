@@ -53,7 +53,7 @@ public class NicknameController implements Initializable {
 
 			// Access the play view controller and call initData method
 			RecordMenuController controller = loader.getController();
-			controller.initData(1, 0, true, data,true);
+			controller.initData(1, 0, true, data, true, nickname);
 			controller.setData();
 			// Gets the stage information
 			Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();

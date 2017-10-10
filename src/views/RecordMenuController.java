@@ -36,6 +36,7 @@ public class RecordMenuController {
 	private String maori;
 	private String userRecording;
 	private String formula;
+	private String nickname;
 	private boolean correctness;
 	private boolean hardLevel;
 	private boolean mathAid;
@@ -47,12 +48,13 @@ public class RecordMenuController {
 	private final static int HARDLIMIT = 99;
 
 	//Load the dictionary with maori words.
-	public void initData(int roundNumber, int score, boolean hardLevel, ObservableList<Table> data, boolean mathAid) {
+	public void initData(int roundNumber, int score, boolean hardLevel, ObservableList<Table> data, boolean mathAid, String nickname) {
 		this.roundNumber = roundNumber;
 		this.score = score;
 		this.hardLevel = hardLevel;
 		this.data = data;
 		this.mathAid = mathAid;
+		this.nickname = nickname;
 		incorrect = 0;
 		dictionary.put(1, "tahi");
 		dictionary.put(2, "rua");
@@ -179,7 +181,7 @@ public class RecordMenuController {
 
 					// Access the check view controller and call initData method
 					CorrectnessController controller = loader.getController();
-					controller.initData(correctness, maori, userRecording, roundNumber, score, hardLevel, data, mathAid);
+					controller.initData(correctness, maori, userRecording, roundNumber, score, hardLevel, data, mathAid, nickname);
 					controller.setData();
 					Scene viewScene = new Scene(view);
 
