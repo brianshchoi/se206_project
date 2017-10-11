@@ -36,8 +36,10 @@ public class CorrectnessController {
 
     private boolean correct;
     private boolean hardLevel;
+    private boolean mathAid;
     private String maoriNumber;
     private String userRecording;
+    private String nickname;
     private int nextQuestionNumber;
     private int score;
 
@@ -45,7 +47,7 @@ public class CorrectnessController {
     private static Main instance = Main.getInstance();
     private ObservableList<Table> data;
 
-    public void initData(boolean correct, String maori, String userRecording, int questionNumber, int score, boolean hardLevel, ObservableList<Table> data){
+    public void initData(boolean correct, String maori, String userRecording, int questionNumber, int score, boolean hardLevel, ObservableList<Table> data, boolean mathAid, String nickname){
         this.correct = correct;
         this.maoriNumber = maori;
         this.userRecording = userRecording;
@@ -53,6 +55,8 @@ public class CorrectnessController {
         this.score = score;
         this.hardLevel = hardLevel;
         this.data = data;
+        this.mathAid = mathAid;
+        this.nickname = nickname;
     }
 
     public void setData(){
@@ -92,7 +96,7 @@ public class CorrectnessController {
 //            viewScene.getStylesheets().add(getClass().getResource("../resources/mainStyle.css").toExternalForm());
             // Access the play view controller and call initData method
             RecordMenuController controller = loader.getController();
-            controller.initData(nextQuestionNumber, score, hardLevel, data);
+            controller.initData(nextQuestionNumber, score, hardLevel, data, mathAid, nickname);
             controller.setData();
 
             // Gets the stage information
@@ -110,7 +114,7 @@ public class CorrectnessController {
 //            viewScene.getStylesheets().add(getClass().getResource("../resources/mainStyle.css").toExternalForm());
             // Access the play view controller and call initData method
             GradeController controller = loader.getController();
-            controller.initData(score, hardLevel, data);// data
+            controller.initData(score, hardLevel, mathAid, nickname);// data
             controller.setData();
 
             // Gets the stage information

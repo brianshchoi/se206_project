@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="620.0" style="-fx-background-color: #ffdeaa;" stylesheets="@../resources/mainStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
+<AnchorPane prefHeight="500.0" prefWidth="620.0" style="-fx-background-color: #ffdeaa;" stylesheets="@../resources/mainStyle.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="500.0" fitWidth="500.0" layoutX="30.0" pickOnBounds="true" style="-fx-opacity: 0.2;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="0.0">
          <image>
@@ -46,11 +47,9 @@
                <children>
                   <TableView fx:id="gradeTable" layoutX="-10.0" prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columns>
-                        <TableColumn fx:id="iQuestion" prefWidth="100.0" resizable="false" text="Question" />
-                        <TableColumn fx:id="iNumber" prefWidth="100.0" resizable="false" text="Number" />
-                        <TableColumn fx:id="iMaori" prefWidth="140.0" resizable="false" text="Māori Number" />
-                        <TableColumn fx:id="iUserRecording" prefWidth="140.0" resizable="false" text="User Recording" />
-                        <TableColumn fx:id="iCorrect" prefWidth="115.0" resizable="false" text="Correctness" />
+                        <TableColumn fx:id="iNickname" prefWidth="100.0" resizable="false" text="Nickname" />
+                        <TableColumn fx:id="iDate" prefWidth="154.0" resizable="false" text="Date" />
+                        <TableColumn fx:id="iTotal" prefWidth="144.0" resizable="false" text="Total Score" />
                      </columns>
                   </TableView>
                </children>
