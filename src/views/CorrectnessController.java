@@ -88,7 +88,7 @@ public class CorrectnessController {
     public void nextPressed(ActionEvent event) throws IOException {
         if (nextQuestionNumber <= numQuestions) {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("recordMenu.fxml"));
+            loader.setLocation(getClass().getResource("fxml/recordMenu.fxml"));
             loader.setController(new RecordMenuController());
             Parent view = loader.load();
 
@@ -106,12 +106,11 @@ public class CorrectnessController {
             window.show();
         } else {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("grade.fxml"));
+            loader.setLocation(getClass().getResource("fxml/grade.fxml"));
             loader.setController(new GradeController());
             Parent view = loader.load();
 
             Scene viewScene = new Scene(view);
-//            viewScene.getStylesheets().add(getClass().getResource("../resources/mainStyle.css").toExternalForm());
             // Access the play view controller and call initData method
             GradeController controller = loader.getController();
             controller.initData(score, hardLevel, mathAid, nickname);// data

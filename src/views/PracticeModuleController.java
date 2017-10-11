@@ -34,7 +34,7 @@ public class PracticeModuleController implements Initializable{
         data = FXCollections.observableArrayList();
 
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("recordMenu.fxml"));
+        loader.setLocation(getClass().getResource("fxml/recordMenu.fxml"));
         loader.setController(new RecordMenuController());
         Parent view = loader.load();
         Scene playScene = new Scene(view);
@@ -68,9 +68,11 @@ public class PracticeModuleController implements Initializable{
      */
     @FXML
     private void helpButtonPressed(ActionEvent event){
-        //TODO show
-        System.out.println("test");
+        //TODO show help
+        System.out.println("Help Button Pressed");
     }
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

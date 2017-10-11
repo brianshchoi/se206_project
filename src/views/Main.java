@@ -15,7 +15,6 @@ import java.util.Optional;
 public class Main extends Application {
     //Singleton instance
     private static Main instance = null;
-
     private static Stage _primaryStage;
     private static Scene _mainScene;
 
@@ -32,7 +31,6 @@ public class Main extends Application {
         //Create the stage responsible for all scenes
         _primaryStage = primaryStage;
         _primaryStage.setTitle("Tātai Practice Module");
-//        _primaryStage.setResizable(false);
         _primaryStage.setMinWidth(400);
         _primaryStage.setMinHeight(300);
         _primaryStage.setOnCloseRequest(e -> windowClose());
@@ -48,7 +46,7 @@ public class Main extends Application {
 
     //Creates the main menu scene which is only created once so that it can be accessed from any other scene.
     private void createMainScene() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/main.fxml"));
         loader.setController(new MainController());
         Parent root = loader.load();
         _mainScene = new Scene(root, 600, 550);
@@ -65,6 +63,8 @@ public class Main extends Application {
 
         if (result.get() == ButtonType.OK) {
             Platform.exit();
+        } else {
+            alert.close();
         }
 
     }
