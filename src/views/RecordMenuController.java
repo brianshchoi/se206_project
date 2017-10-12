@@ -24,7 +24,7 @@ import java.util.Optional;
 
 public class RecordMenuController {
 	@FXML
-	private Button mainMenuButton, recordButton, scoreButton;
+	private Button mainMenuButton, recordButton, scoreButton, check, play;
 	@FXML
 	private Label number, round, info;
 
@@ -69,11 +69,14 @@ public class RecordMenuController {
 	}
 
 	public void setData(){
-		recordButton.setDisable(false);
-		if (mathAid) {
-			playingNumber = generateQuestion();
+		recordButton.setDisable(false);				// record button enabled
+		play.setDisable(true);						// play button disabled
+		check.setDisable(true);						// check button disabled
+		
+		if (mathAid) {								// if playing math aid module, random formula is generated
+			playingNumber = generateQuestion();	
 			number.setText(formula);
-		} else {
+		} else {									// else if playing practice module, random number is generated
 			if (hardLevel){
 				playingNumber = getRandomNumber(1, HARDLIMIT);
 			} else {
@@ -161,49 +164,22 @@ public class RecordMenuController {
 		info.setText("Recording ...");
 		recordThread();
 		outputThread();
-		PauseTransition pause = new PauseTransition(Duration.seconds(5));
+		PauseTransition pause = new PauseTransition(Duration.seconds(4));
 		pause.setOnFinished(event -> {
-			if (correctness || incorrect != 1) {
-				try {
-					String correct;
-					if (correctness){
-						correct = "Correct";
-					} else {
-						correct = "Incorrect";
-					}
-					data.add(new Table(roundNumber,playingNumber,correct, userRecording, maori));
-
-					FXMLLoader loader = new FXMLLoader();
-					loader.setLocation(getClass().getResource("correctness.fxml"));
-					loader.setController(new CorrectnessController());
-					Parent view = loader.load();
-
-					// Access the check view controller and call initData method
-					CorrectnessController controller = loader.getController();
-					controller.initData(correctness, maori, userRecording, roundNumber, score, hardLevel, data, mathAid, nickname);
-					controller.setData();
-					Scene viewScene = new Scene(view);
-
-					// Gets the stage information
-					Stage window = (Stage) ((Node) ev.getSource()).getScene().getWindow();
-
-					window.setScene(viewScene);
-					window.show();
-				} catch (IOException e) {
-				}
-			}
+			info.setText("Number recorded!");
+			check.setDisable(false);
+			play.setDisable(false);
 		});
 		pause.play();
 	}
 
 	/*
-	 * Uses HTK framework to record 3 seconds of
+	 * Method that starts the bash process to record user voice for the given number.
+	 * It uses HTK framework to record for 3 seconds.
 	 */
 	private void recordThread() {
 		//Might need to change so that the recording can be played back with a button, then confirmed with a 'check' button
-		String command = "cd $MYDIR; " + "./GoSpeech";
-		//                "arecord -d 3 -r 22050 -c 1 -i -t wav -f s16_LE foo.wav; " +
-		//                "HVite -H HMMs/hmm15/macros -H HMMs/hmm15/hmmdefs -C user/configLR  -w user/wordNetworkNum -o SWT -l '*' -i recout.mlf -p 0.0 -s 5.0  user/dictionaryD user/tiedList foo.wav;" +
+		String command = "cd $MYDIR; " + "rm foo.wav; arecord -d 3 -r 22050 -c 1 -i -t wav -f s16_LE foo.wav; HVite -H HMMs/hmm15/macros -H HMMs/hmm15/hmmdefs -C user/configLR  -w user/wordNetworkNum -o SWT -l '*' -i recout.mlf -p 0.0 -s 5.0  user/dictionaryD user/tiedList foo.wav;";
 		//                "aplay foo.wav;" +
 		//                "rm foo.wav;" +
 		//                "more recout.mlf";
@@ -234,7 +210,7 @@ public class RecordMenuController {
 	 * Second thread that performs maori string extraction of the user recording and compares the two
 	 */
 	private void outputThread(){
-		String command2 = "sleep 3.2; cd $MYDIR; sed -n '/sil/,/sil/{/sil/b;/sil/b;p}' recout.mlf";
+		String command2 = "sleep 4; cd $MYDIR; sed -n '/sil/,/sil/{/sil/b;/sil/b;p}' recout.mlf";
 		ProcessBuilder pb = new ProcessBuilder("bash", "-c", command2);
 		Map<String, String> environment = pb.environment();
 		String home = environment.get("HOME")+"/Documents/HTK/MaoriNumbers/";	// reading $HOME
@@ -268,23 +244,6 @@ public class RecordMenuController {
 						correctness = false;
 						incorrect++;
 					}
-					Platform.runLater(new Runnable() {
-						@Override
-						public void run() {
-							if (!correctness && incorrect == 1) {
-								Alert alert = new Alert(Alert.AlertType.ERROR);
-								alert.setTitle("Tatai - Incorrect");
-								alert.setHeaderText("Incorrect!");
-								alert.setContentText("You said " + userRecording + ". Press 'OK' to try again.");
-
-								alert.showAndWait();
-
-								info.setText("Please try again. Make sure to say the number clearly.");
-								recordButton.setDisable(false);
-							}
-						}
-					});
-
 				} catch (IOException | InterruptedException e) {
 					System.out.println(pb.command().toString());
 					e.printStackTrace();
@@ -293,6 +252,81 @@ public class RecordMenuController {
 
 		});
 		thread.start();
+	}
+	
+	/*
+	 * Method to play back the user recording
+	 */
+	public void playPressed(ActionEvent event) {
+		String command = "cd $MYDIR; aplay foo.wav;";
+		ProcessBuilder processBuilder = new ProcessBuilder("bash", "-c", command);
+		Map<String, String> environment = processBuilder.environment();
+		String home = environment.get("HOME")+"/Documents/HTK/MaoriNumbers/";	// reading $HOME
+		environment.put("MYDIR", home);											// setting $MYDIR
+
+		Thread thread = new Thread(() -> {
+			try {
+				processBuilder.redirectErrorStream(true);
+				Process process = processBuilder.start();
+				BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+				String line;
+				while ((line = reader.readLine()) != null) {
+					System.out.println(line);
+				}
+				process.waitFor();
+			} catch (IOException | InterruptedException e) {
+				System.out.println(processBuilder.command().toString());
+				e.printStackTrace();
+			}
+		});
+		thread.start();
+	}
+	
+	/*
+	 * Method to check for correctness of the user recording
+	 */
+	public void checkPressed(ActionEvent event) {
+		if (!correctness && incorrect == 1) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Tatai - Incorrect");
+			alert.setHeaderText("Incorrect!");
+			alert.setContentText("You said " + userRecording + ". Press 'OK' to try again.");
+
+			alert.showAndWait();
+
+			info.setText("Please try again. Make sure to say the number clearly.");
+			recordButton.setDisable(false);
+			check.setDisable(true);
+			play.setDisable(true);
+		} else if (correctness || incorrect != 1) {
+			try {
+				String correct;
+				if (correctness){
+					correct = "Correct";
+				} else {
+					correct = "Incorrect";
+				}
+				data.add(new Table(roundNumber,playingNumber,correct, userRecording, maori));
+
+				FXMLLoader loader = new FXMLLoader();
+				loader.setLocation(getClass().getResource("correctness.fxml"));
+				loader.setController(new CorrectnessController());
+				Parent view = loader.load();
+
+				// Access the check view controller and call initData method
+				CorrectnessController controller = loader.getController();
+				controller.initData(correctness, maori, userRecording, roundNumber, score, hardLevel, data, mathAid, nickname);
+				controller.setData();
+				Scene viewScene = new Scene(view);
+
+				// Gets the stage information
+				Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+				window.setScene(viewScene);
+				window.show();
+			} catch (IOException e) {
+			}
+		}
 	}
 
 	/*
