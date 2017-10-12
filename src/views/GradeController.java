@@ -16,6 +16,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.effect.Glow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
@@ -36,6 +39,8 @@ public class GradeController implements Initializable{
 
 	@FXML
 	private Label totalScore;
+	@FXML
+	private ImageView feedback;
 	@FXML
 	private Button playAgainEasy;
 	@FXML
@@ -79,8 +84,8 @@ public class GradeController implements Initializable{
 		Date date = new Date();
 		DateFormat dateFormat = new SimpleDateFormat("yy-mm-dd hh:mm");
 		String strDate = dateFormat.format(date);
-		loadDataFromFile();									// loads data from previous plays to the tableview
 		data.add(new userTable(score, nickname, strDate));	// adds the current play data to the tableview
+		loadDataFromFile();									// loads data from previous plays to the tableview
 		try {
 			saveDataToFile();								// saves the current play data to the file
 		} catch (IOException e) {
@@ -91,6 +96,21 @@ public class GradeController implements Initializable{
 
 	public void setData(){
 		totalScore.setText("Total: " + score + "/" + numQuestions);
+		Image perfect = new Image("/resources/perfect.png");
+		Image good = new Image("/resources/welldone.jpg");
+		Image average = new Image("/resources/keepup.jpg");
+		Image tryBetter = new Image("/resources/try.png");
+		if (score == 10) {
+			feedback.setImage(perfect);
+			feedback.setEffect(new Glow());
+		} else if (score == 8 || score == 9) {
+			feedback.setImage(good);
+			feedback.setEffect(new Glow());
+		} else if (score > 4 && score < 8) {
+			feedback.setImage(average);
+		} else {
+			feedback.setImage(tryBetter);
+		}
 		if ((score >= easyToHardBoundary && !hardLevel)||(hardLevel)){
 			playAgainHard.setDisable(false);
 		} else {

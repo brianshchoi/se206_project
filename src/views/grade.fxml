@@ -43,9 +43,9 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <AnchorPane fx:id="table" layoutX="43.0" layoutY="114.0" prefHeight="300.0" prefWidth="600.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0">
+            <AnchorPane fx:id="table" layoutX="43.0" layoutY="114.0" prefHeight="270.0" prefWidth="600.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0">
                <children>
-                  <TableView fx:id="gradeTable" layoutX="-10.0" prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="gradeTable" layoutX="-10.0" prefHeight="277.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columns>
                         <TableColumn fx:id="iNickname" prefWidth="100.0" resizable="false" text="Nickname" />
                         <TableColumn fx:id="iDate" prefWidth="154.0" resizable="false" text="Date" />
@@ -54,6 +54,7 @@
                   </TableView>
                </children>
             </AnchorPane>
+            <ImageView fx:id="feedback" fitHeight="75.0" fitWidth="75.0" layoutX="14.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="30.0" />
          </children>
       </AnchorPane>
 
