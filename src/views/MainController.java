@@ -18,9 +18,7 @@ import java.util.ResourceBundle;
 public class MainController implements Initializable {
 
     @FXML
-    private Button mathsAidButton;
-    @FXML
-    private Button practiceButton;
+    private Button mathsAidButton, practiceButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -32,31 +30,24 @@ public class MainController implements Initializable {
         FXMLLoader loader = new FXMLLoader();
         Scene playScene;
         Stage window;
+        boolean mathAid = false;
 
         if (event.getSource() == mathsAidButton){
-            //Changes to nickname screen
-            loader.setLocation(getClass().getResource("fxml/NicknameScreen.fxml"));
-            loader.setController(new NicknameController());
-            Parent view = loader.load();
-            playScene = new Scene(view);
-            window = (Stage)((Node)event.getSource()).getScene().getWindow();
-            window.setWidth(600);
-            window.setHeight(300);
-            window.setScene(playScene);
-            window.show();
+            mathAid = true;
+        } else if (event.getSource() == practiceButton){
+            mathAid = false;
+
         }
 
-        else if (event.getSource() == practiceButton){
-            loader.setLocation(getClass().getResource("fxml/PracticeModule.fxml"));
-            loader.setController(new PracticeModuleController());
-            Parent view = loader.load();
-            playScene = new Scene(view);
-            window = (Stage)((Node)event.getSource()).getScene().getWindow();
-            window.setScene(playScene);
-            window.show();
-        }
-
-
-
+        //Changes to nickname screen
+        loader.setLocation(getClass().getResource("fxml/NameScreen.fxml"));
+        loader.setController(new NameController(mathAid));
+        Parent view = loader.load();
+        playScene = new Scene(view);
+        window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setWidth(600);
+        window.setHeight(300);
+        window.setScene(playScene);
+        window.show();
     }
 }

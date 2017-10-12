@@ -93,7 +93,6 @@ public class CorrectnessController {
             Parent view = loader.load();
 
             Scene viewScene = new Scene(view);
-//            viewScene.getStylesheets().add(getClass().getResource("../resources/mainStyle.css").toExternalForm());
             // Access the play view controller and call initData method
             RecordMenuController controller = loader.getController();
             controller.initData(nextQuestionNumber, score, hardLevel, data, mathAid, nickname);

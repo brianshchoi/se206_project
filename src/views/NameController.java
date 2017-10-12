@@ -21,17 +21,20 @@ import java.util.regex.Pattern;
 
 import commons.Table;
 
-public class NicknameController implements Initializable {
+public class NameController implements Initializable {
 
 	@FXML
 	private TextField _nameField;
 	@FXML
 	private Label _errorLabel;
+	private boolean _mathAid;
+
+	public NameController(boolean mathAid){
+		_mathAid = mathAid;
+	}
 
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-
-	}
+	public void initialize(URL location, ResourceBundle resources) {}
 
 	@FXML
 	private void submitButtonPressed(ActionEvent event) throws IOException{
@@ -39,11 +42,9 @@ public class NicknameController implements Initializable {
 
 		if (noSpecialCharacters(name)){
 			//Create new scoreboard
-
-
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("fxml/difficultyChoose.fxml"));
-			loader.setController(new DifficultyChooseController(name));
+			loader.setController(new DifficultyChooseController(name, _mathAid));
 			Parent view = loader.load();
 			Scene chooseScene = new Scene(view);
 
@@ -74,7 +75,5 @@ public class NicknameController implements Initializable {
 		else {
 			return true;
 		}
-
-
 	}
 }

@@ -9,7 +9,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane maxHeight="550.0" maxWidth="600.0" minHeight="550.0" minWidth="600.0" prefHeight="550.0" prefWidth="600.0" style="-fx-background-color: #ffdeaa;" stylesheets="@../../resources/mainStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="550.0" fitWidth="600.0" pickOnBounds="true" style="-fx-opacity: 0.1;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -17,9 +16,9 @@
             <Image url="@../../resources/background.png" />
          </image>
       </ImageView>
-      <GridPane prefHeight="550.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <GridPane layoutX="-8.0" layoutY="10.0" prefHeight="550.0" prefWidth="600.0" AnchorPane.bottomAnchor="-10.0" AnchorPane.leftAnchor="-8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="10.0">
          <children>
-            <Button fx:id="hardButton" maxHeight="120.0" maxWidth="327.0" minHeight="120.0" minWidth="140.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="120.0" prefWidth="327.0" text="Hard" textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <Button fx:id="hardButton" maxHeight="100.0" maxWidth="327.0" minHeight="100.0" minWidth="140.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="100.0" prefWidth="327.0" text="Hard" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -33,7 +32,7 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
             </Button>
-            <Label alignment="CENTER" maxHeight="100.0" maxWidth="300.0" minHeight="100.0" minWidth="300.0" prefHeight="100.0" prefWidth="300.0" text="Choose a Difficulty" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Label alignment="CENTER" maxHeight="100.0" maxWidth="300.0" minHeight="100.0" minWidth="300.0" prefHeight="100.0" prefWidth="300.0" text="Choose a Difficulty" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
                   <Font size="30.0" />
                </font>
@@ -41,7 +40,7 @@
                   <Insets left="15.0" right="15.0" top="10.0" />
                </padding>
             </Label>
-            <Button fx:id="easyButton" maxHeight="120.0" maxWidth="332.0" minHeight="120.0" minWidth="140.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="120.0" prefWidth="332.0" text="Easy" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Button fx:id="easyButton" maxHeight="100.0" maxWidth="332.0" minHeight="100.0" minWidth="140.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="100.0" prefWidth="332.0" text="Easy" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -52,12 +51,43 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
             </Button>
+            <Button fx:id="menuButton" maxHeight="40.0" maxWidth="110.0" minHeight="40.0" minWidth="110.0" mnemonicParsing="false" onAction="#mainMenuButtonPressed" prefHeight="40.0" prefWidth="110.0" text="Main Menu" textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </Button>
+            <Button fx:id="helpButton" maxHeight="40.0" maxWidth="110.0" minHeight="40.0" minWidth="110.0" mnemonicParsing="false" onAction="#helpButtonPressed" prefHeight="40.0" prefWidth="110.0" text="Help" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </Button>
          </children>
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="25.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="329.0" minWidth="10.0" percentWidth="50.0" prefWidth="329.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="192.0" minWidth="10.0" percentWidth="25.0" prefWidth="71.0" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints minHeight="30.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="86.66666666666667" minHeight="30.0" percentHeight="10.0" prefHeight="71.66666666666667" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="111.66666666666667" minHeight="30.0" percentHeight="10.0" prefHeight="111.66666666666667" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" percentHeight="40.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" percentHeight="40.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
