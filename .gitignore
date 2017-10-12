@@ -49,3 +49,9 @@ crashlytics-build.properties
 fabric.properties
 
 #iml files
+/bin/
+
+#eclipse
+.classpath
+.project
+*.csv
