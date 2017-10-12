@@ -30,7 +30,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         //Create the stage responsible for all scenes
         _primaryStage = primaryStage;
-        _primaryStage.setTitle("Tātai Practice Module");
+        _primaryStage.setTitle("Tātai Maths Aid");
         _primaryStage.setMinWidth(400);
         _primaryStage.setMinHeight(300);
         _primaryStage.setOnCloseRequest(e -> windowClose());
@@ -55,7 +55,7 @@ public class Main extends Application {
     //Window prompt when X button is pressed
     private void windowClose(){
         Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Tātai Practise Module - Quit");
+        alert.setTitle("Tātai Maths Aid - Quit");
         alert.setHeaderText("WARNING - Quit");
         alert.setContentText("Are you sure you want to quit?");
 

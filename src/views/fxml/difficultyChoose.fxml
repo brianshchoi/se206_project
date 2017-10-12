@@ -51,13 +51,10 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
             </Button>
-            <Button fx:id="menuButton" maxHeight="40.0" maxWidth="110.0" minHeight="40.0" minWidth="110.0" mnemonicParsing="false" onAction="#mainMenuButtonPressed" prefHeight="40.0" prefWidth="110.0" text="Main Menu" textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Button fx:id="menuButton" maxHeight="40.0" maxWidth="140.0" minHeight="40.0" minWidth="140.0" mnemonicParsing="false" onAction="#mainMenuButtonPressed" prefHeight="40.0" prefWidth="140.0" text="Main Menu" textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -65,7 +62,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </Button>
-            <Button fx:id="helpButton" maxHeight="40.0" maxWidth="110.0" minHeight="40.0" minWidth="110.0" mnemonicParsing="false" onAction="#helpButtonPressed" prefHeight="40.0" prefWidth="110.0" text="Help" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Button fx:id="helpButton" maxHeight="40.0" maxWidth="140.0" minHeight="40.0" minWidth="140.0" mnemonicParsing="false" onAction="#helpButtonPressed" prefHeight="40.0" prefWidth="140.0" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -78,18 +75,25 @@
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../resources/i.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
          </children>
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="25.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="329.0" minWidth="10.0" percentWidth="50.0" prefWidth="329.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="192.0" minWidth="10.0" percentWidth="25.0" prefWidth="71.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="33.33" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="329.0" minWidth="10.0" percentWidth="33.33" prefWidth="329.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="33.33" prefWidth="100.0" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints maxHeight="86.66666666666667" minHeight="30.0" percentHeight="10.0" prefHeight="71.66666666666667" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="111.66666666666667" minHeight="30.0" percentHeight="10.0" prefHeight="111.66666666666667" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" percentHeight="40.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" percentHeight="40.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="75.0" minHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="120.0" minHeight="30.0" percentHeight="15.0" prefHeight="59.5" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="215.0" minHeight="10.0" percentHeight="37.5" prefHeight="184.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" percentHeight="37.5" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
    </children>
