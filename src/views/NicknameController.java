@@ -57,7 +57,8 @@ public class NicknameController implements Initializable {
 			controller.setData();
 			// Gets the stage information
 			Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-
+			window.setMinWidth(600);
+			window.setMinHeight(550);
 			window.setScene(playScene);
 			window.show();
 		}

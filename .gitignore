@@ -54,3 +54,4 @@ fabric.properties
 #eclipse
 .classpath
 .project
+.csv
