@@ -18,12 +18,19 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
+
 
 public class GradeController implements Initializable{
 
@@ -51,6 +58,9 @@ public class GradeController implements Initializable{
     private static Main instance = Main.getInstance();
     private final static int easyToHardBoundary = 8;
     private final static int numQuestions = 10;
+    
+    private static final String FILENAME = "results.csv";
+
 
     final ObservableList<userTable> data = FXCollections.observableArrayList();
 
@@ -62,7 +72,14 @@ public class GradeController implements Initializable{
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat("yy-mm-dd hh:mm");
         String strDate = dateFormat.format(date);
-        data.add(new userTable(score, nickname, strDate));
+        loadDataFromFile();									// loads data from previous plays to the tableview
+        data.add(new userTable(score, nickname, strDate));	// adds the current play data to the tableview
+        try {
+			saveDataToFile();								// saves the current play data to the file
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        
     }
 
     public void setData(){
@@ -113,5 +130,48 @@ public class GradeController implements Initializable{
         iNickname.setCellValueFactory(new PropertyValueFactory<userTable, String>("Nickname"));
         iDate.setCellValueFactory(new PropertyValueFactory<userTable, String>("Date"));
         gradeTable.setItems(data);
+    }
+    
+    /**
+     * Loads the saved data from previous plays.
+     */
+    public void loadDataFromFile() {
+    	try {
+    		File file = new File(FILENAME);
+    		file.createNewFile();				// Check for result data file existence and create one if it doesn't exist
+	        BufferedReader br = new BufferedReader(new FileReader(file));
+	        String line;
+	        String[] array;
+
+	        while ((line = br.readLine()) != null){
+	            array = line.split(",");		// read the file, split it by ',' and put them into columns of the tableview
+	            gradeTable.getItems().add(new userTable(Integer.parseInt(array[0]), array[1], array[2]));
+	        }
+	        br.close();
+
+	    }catch (Exception ex){
+	        ex.printStackTrace();
+	    }
+    }
+
+    /**
+     * Saves the current user results to the file.
+     */
+    public void saveDataToFile() throws IOException {
+    	Writer writer = null;
+		try {
+			File file = new File(FILENAME);
+			writer = new BufferedWriter(new FileWriter(file, true));
+			for (userTable userData : data) {
+				String text = userData.getTotal() + "," + userData.getNickname() + "," + userData.getDate() + "\n";
+				writer.write(text);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		finally {
+			writer.flush();
+			writer.close();
+		}
     }
 }

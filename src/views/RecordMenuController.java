@@ -105,7 +105,8 @@ public class RecordMenuController {
 	//		}
 	//		return (int)(Math.random() * (max-min) + 1);
 	//	}
-	//	
+	//
+	
 	/*
 	 * Method generating a random number between given range
 	 */
@@ -172,12 +173,10 @@ public class RecordMenuController {
 					}
 					data.add(new Table(roundNumber,playingNumber,correct, userRecording, maori));
 
-
 					FXMLLoader loader = new FXMLLoader();
 					loader.setLocation(getClass().getResource("correctness.fxml"));
 					loader.setController(new CorrectnessController());
 					Parent view = loader.load();
-
 
 					// Access the check view controller and call initData method
 					CorrectnessController controller = loader.getController();

@@ -43,7 +43,7 @@ public class CorrectnessController {
     private int nextQuestionNumber;
     private int score;
 
-    private static final int numQuestions = 10;
+    private static final int numQuestions = 1;
     private static Main instance = Main.getInstance();
     private ObservableList<Table> data;
 
