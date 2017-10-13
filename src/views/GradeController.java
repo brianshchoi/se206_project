@@ -128,7 +128,7 @@ public class GradeController implements Initializable{
 		ObservableList<Table> newData = FXCollections.observableArrayList();
 
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("recordMenu.fxml"));
+		loader.setLocation(getClass().getResource("fxml/recordMenu.fxml"));
 		loader.setController(new RecordMenuController());
 		Parent view = loader.load();
 

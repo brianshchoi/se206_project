@@ -2,7 +2,6 @@ package views;
 
 import commons.Table;
 import javafx.animation.PauseTransition;
-import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,11 +19,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
-public class RecordMenuController {
+public class RecordMenuController extends AbstractController{
 	@FXML
-	private Button mainMenuButton, recordButton, scoreButton, check, play;
+	private Button mainMenuButton, recordButton, scoreButton, checkButton, playRecordButton;
 	@FXML
 	private Label number, round, info;
 
@@ -70,8 +68,8 @@ public class RecordMenuController {
 
 	public void setData(){
 		recordButton.setDisable(false);				// record button enabled
-		play.setDisable(true);						// play button disabled
-		check.setDisable(true);						// check button disabled
+		playRecordButton.setDisable(true);			// playRecordButton button disabled
+		checkButton.setDisable(true);				// checkButton button disabled
 		
 		if (mathAid) {								// if playing math aid module, random formula is generated
 			playingNumber = generateQuestion();	
@@ -102,14 +100,6 @@ public class RecordMenuController {
 		round.setText("Question " + Integer.toString(roundNumber));
 	}
 
-	//	private int getRandomNumber(int min, int max) {
-	//		if (min >= max) {
-	//			throw new IllegalArgumentException("max must be greater than min");
-	//		}
-	//		return (int)(Math.random() * (max-min) + 1);
-	//	}
-	//
-	
 	/*
 	 * Method generating a random number between given range
 	 */
@@ -121,29 +111,15 @@ public class RecordMenuController {
 	}
 
 
-	@FXML
-	private void mainMenuPressed(ActionEvent event) throws IOException {
-		Alert alert = new Alert(Alert.AlertType.WARNING);
-		alert.setTitle("Tātai Practise Module - Quit");
-		alert.setHeaderText("WARNING - You will lose all current progress.");
-		alert.setContentText("Are you sure you want to quit?");
-
-		Optional<ButtonType> result = alert.showAndWait();
-		if (result.get() == ButtonType.OK) {
-			instance.setMainScene();
-		} else {
-			alert.close();
-		}
-	}
 
 	@FXML
 	private void scorePressed(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("scoreBoard.fxml"));
+		loader.setLocation(getClass().getResource("fxml/scoreBoard.fxml"));
 		loader.setController(new ScoreBoard());
 		Parent view = loader.load();
 
-		// Access the check view controller and call initData method
+		// Access the checkButton view controller and call initData method
 		ScoreBoard controller = loader.getController();
 		controller.setData(data);
 		Scene scoreBoardScene = new Scene(view);
@@ -167,8 +143,8 @@ public class RecordMenuController {
 		PauseTransition pause = new PauseTransition(Duration.seconds(4));
 		pause.setOnFinished(event -> {
 			info.setText("Number recorded!");
-			check.setDisable(false);
-			play.setDisable(false);
+			checkButton.setDisable(false);
+			playRecordButton.setDisable(false);
 		});
 		pause.play();
 	}
@@ -178,7 +154,7 @@ public class RecordMenuController {
 	 * It uses HTK framework to record for 3 seconds.
 	 */
 	private void recordThread() {
-		//Might need to change so that the recording can be played back with a button, then confirmed with a 'check' button
+		//Might need to change so that the recording can be played back with a button, then confirmed with a 'checkButton' button
 		String command = "cd $MYDIR; " + "rm foo.wav; arecord -d 3 -r 22050 -c 1 -i -t wav -f s16_LE foo.wav; HVite -H HMMs/hmm15/macros -H HMMs/hmm15/hmmdefs -C user/configLR  -w user/wordNetworkNum -o SWT -l '*' -i recout.mlf -p 0.0 -s 5.0  user/dictionaryD user/tiedList foo.wav;";
 		//                "aplay foo.wav;" +
 		//                "rm foo.wav;" +
@@ -255,9 +231,9 @@ public class RecordMenuController {
 	}
 	
 	/*
-	 * Method to play back the user recording
+	 * Method to playRecordButton back the user recording
 	 */
-	public void playPressed(ActionEvent event) {
+	public void playRecordingPressed(ActionEvent event) {
 		String command = "cd $MYDIR; aplay foo.wav;";
 		ProcessBuilder processBuilder = new ProcessBuilder("bash", "-c", command);
 		Map<String, String> environment = processBuilder.environment();
@@ -283,9 +259,9 @@ public class RecordMenuController {
 	}
 	
 	/*
-	 * Method to check for correctness of the user recording
+	 * Method to checkButton for correctness of the user recording
 	 */
-	public void checkPressed(ActionEvent event) {
+	public void checkButtonPressed(ActionEvent event) {
 		if (!correctness && incorrect == 1) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Tatai - Incorrect");
@@ -296,8 +272,8 @@ public class RecordMenuController {
 
 			info.setText("Please try again. Make sure to say the number clearly.");
 			recordButton.setDisable(false);
-			check.setDisable(true);
-			play.setDisable(true);
+			checkButton.setDisable(true);
+			playRecordButton.setDisable(true);
 		} else if (correctness || incorrect != 1) {
 			try {
 				String correct;
@@ -309,11 +285,11 @@ public class RecordMenuController {
 				data.add(new Table(roundNumber,playingNumber,correct, userRecording, maori));
 
 				FXMLLoader loader = new FXMLLoader();
-				loader.setLocation(getClass().getResource("correctness.fxml"));
+				loader.setLocation(getClass().getResource("fxml/correctness.fxml"));
 				loader.setController(new CorrectnessController());
 				Parent view = loader.load();
 
-				// Access the check view controller and call initData method
+				// Access the checkButton view controller and call initData method
 				CorrectnessController controller = loader.getController();
 				controller.initData(correctness, maori, userRecording, roundNumber, score, hardLevel, data, mathAid, nickname);
 				controller.setData();

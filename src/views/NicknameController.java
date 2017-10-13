@@ -23,65 +23,55 @@ import commons.Table;
 
 public class NicknameController implements Initializable {
 
-	private String _nickname;
-	private ObservableList<Table> data;
-
 	@FXML
-	private TextField _nickNameField;
+	private TextField _nameField;
 	@FXML
 	private Label _errorLabel;
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
+	private boolean _mathAid;
 
+	public NicknameController(boolean mathAid){
+		_mathAid = mathAid;
 	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {}
 
 	@FXML
 	private void submitButtonPressed(ActionEvent event) throws IOException{
-		String nickname = _nickNameField.getText();
+		String name = _nameField.getText();
 
-		if (noSpecialCharacters(nickname)){
-			_nickname = nickname;
-			_errorLabel.setText("correct");
+		if (noSpecialCharacters(name)){
 			//Create new scoreboard
-			data = FXCollections.observableArrayList();
-
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource("recordMenu.fxml"));
-			loader.setController(new RecordMenuController());
+			loader.setLocation(getClass().getResource("fxml/difficultyChoose.fxml"));
+			loader.setController(new DifficultyChooseController(name, _mathAid));
 			Parent view = loader.load();
-			Scene playScene = new Scene(view);
+			Scene chooseScene = new Scene(view);
 
-			// Access the play view controller and call initData method
-			RecordMenuController controller = loader.getController();
-			controller.initData(1, 0, true, data, true, nickname);
-			controller.setData();
 			// Gets the stage information
 			Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-			window.setMinWidth(600);
-			window.setMinHeight(550);
-			window.setScene(playScene);
+
+			window.setWidth(600);
+			window.setHeight(550);
+			window.setResizable(false);
+			window.setScene(chooseScene);
 			window.show();
 		}
 		else{
-			_errorLabel.setText("ERROR no special characters allowed");
+			_errorLabel.setText("ERROR: No special characters allowed. Please try again");
 		}
-
-		System.out.println(_nickname);
 	}
 
 	private boolean noSpecialCharacters(String name) {
-		Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
-		Matcher m = p.matcher(name);
-		boolean b = m.find();
+		Pattern pattern = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+		Matcher matcher = pattern.matcher(name);
+		boolean hasSpecialCharacter = matcher.find();
 
-		if (b){
-			System.out.println("There is a special character in my string");
+		if (hasSpecialCharacter){
 			return false;
 		}
 		else {
 			return true;
 		}
-
-
 	}
 }
