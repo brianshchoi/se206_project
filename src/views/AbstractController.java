@@ -5,39 +5,29 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 /**
  * Created by brian on 12/10/2017.
  */
 public class AbstractController {
 
-    private boolean _mathAid;
+    protected boolean _mathAid;
 
     @FXML
     private Label _title, easyLabel, hardLabel;
 
-    private static Main instance = Main.getInstance();
+    protected static Main instance = Main.getInstance();
 
     @FXML
-    private void helpButtonPressed(ActionEvent event){
-        //TODO show help
-        //If it is Math Aid Module
-        if (_mathAid = true){
-            // Change module
-        }
-        //If it is Practice Module
-        else {
-            //
-            _title.setText("Tatai")
-
-        }
-
-
+    protected void helpButtonPressed(ActionEvent event){
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("fxml/Help.fxml"));
@@ -46,6 +36,7 @@ public class AbstractController {
 
             // Access the check view controller and call initData method
             HelpController controller = loader.getController();
+            controller.setText(_mathAid);
             Scene helpScene = new Scene(view);
 
             // Gets the stage information
@@ -60,7 +51,26 @@ public class AbstractController {
         catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("Help Button Pressed");
+
     }
 
+    @FXML
+    protected void mainMenuPromptPressed(ActionEvent event) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Tātai Practise Module - Quit");
+        alert.setHeaderText("WARNING - You will lose all current progress.");
+        alert.setContentText("Are you sure you want to quit?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            instance.setMainScene();
+        } else {
+            alert.close();
+        }
+    }
+
+    @FXML
+    protected void mainMenuPressed(ActionEvent event){
+        instance.setMainScene();
+    }
 }

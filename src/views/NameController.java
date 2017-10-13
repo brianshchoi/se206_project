@@ -48,8 +48,6 @@ public class NameController implements Initializable {
 			Parent view = loader.load();
 			Scene chooseScene = new Scene(view);
 
-
-
 			// Gets the stage information
 			Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 

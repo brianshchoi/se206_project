@@ -10,60 +10,66 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="500.0" maxWidth="550.0" minHeight="500.0" minWidth="550.0" prefHeight="500.0" prefWidth="550.0" style="-fx-background-color: #ffdeaa;" stylesheets="@../../resources/mainStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
+<AnchorPane maxHeight="550.0" maxWidth="600.0" minHeight="550.0" minWidth="600.0" prefHeight="550.0" prefWidth="600.0" style="-fx-background-color: #ffdeaa;" stylesheets="@../../resources/mainStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <ImageView fitHeight="500.0" fitWidth="487.0" layoutX="30.0" pickOnBounds="true" style="-fx-opacity: 0.2;" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="33.0">
+        <ImageView fitHeight="550.0" fitWidth="545.0" layoutX="30.0" pickOnBounds="true" style="-fx-opacity: 0.2;" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="25.0">
             <image>
                 <Image url="@../../resources/koru-256.png" />
             </image>
         </ImageView>
-      <AnchorPane prefHeight="500.0" prefWidth="550.0" style="-fx-background-color: rgba(255, 222, 170, 0.7);">
+      <GridPane prefHeight="500.0" prefWidth="550.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="33.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="66.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="161.0" minHeight="10.0" prefHeight="118.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="216.0" minHeight="10.0" prefHeight="144.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="216.0" minHeight="10.0" prefHeight="142.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="116.0" minHeight="10.0" prefHeight="116.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <HBox layoutY="125.0" prefHeight="130.0" prefWidth="540.0">
-               <children>
-                  <ImageView fx:id="correctIncorrectImage" fitHeight="63.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../resources/correct.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets left="100.0" right="10.0" top="37.0" />
-                     </HBox.margin>
-                  </ImageView>
-                    <Label fx:id="correctness" alignment="CENTER" contentDisplay="CENTER" prefHeight="130.0" prefWidth="220.0" text="correct" wrapText="true">
-                        <font>
-                            <Font size="39.0" />
-                        </font>
-                     <padding>
-                        <Insets left="20.0" right="20.0" />
-                     </padding>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                    </Label>
-               </children>
-            </HBox>
-              <Button fx:id="nextButton" alignment="CENTER" contentDisplay="CENTER" maxWidth="140.0" minWidth="120.0" mnemonicParsing="false" onAction="#nextPressed" prefHeight="40.0" prefWidth="140.0" text="Next" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0">
-                  <font>
-                      <Font size="14.0" />
-                  </font>
-              </Button>
-              <Button fx:id="mainmenuButton" alignment="CENTER" contentDisplay="CENTER" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#mainMenuPressed" prefHeight="40.0" prefWidth="140.0" text="Main Menu" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0">
-                  <font>
-                      <Font size="14.0" />
-                  </font>
-              </Button>
-              <Label fx:id="recordedNumber" alignment="CENTER" contentDisplay="CENTER" prefHeight="104.0" prefWidth="510.0" style="-: rgba(255, 222, 170, 0.8);" text="You said ... instead of ... . Press 'Next' to play the next round" wrapText="true" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
-                  <font>
-                      <Font size="14.0" />
-                  </font>
-              </Label>
-            <Label fx:id="questionNumberLabel" alignment="CENTER" prefHeight="90.0" prefWidth="550.0" text="Question no." AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Label fx:id="questionNumberLabel" alignment="CENTER" prefHeight="199.0" prefWidth="550.0" text="Question no." GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font size="40.0" />
                </font>
             </Label>
+              <Label fx:id="correctness" contentDisplay="CENTER" prefHeight="218.0" prefWidth="385.0" text="correct" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <font>
+                      <Font size="39.0" />
+                  </font>
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+              </Label>
+              <Button fx:id="mainmenuButton" alignment="CENTER" contentDisplay="CENTER" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#mainMenuPressed" prefHeight="40.0" prefWidth="140.0" text="Main Menu" GridPane.rowIndex="3">
+                  <font>
+                      <Font size="14.0" />
+                  </font>
+              </Button>
+              <Button fx:id="nextButton" alignment="CENTER" contentDisplay="CENTER" maxWidth="140.0" minWidth="120.0" mnemonicParsing="false" onAction="#nextPressed" prefHeight="40.0" prefWidth="140.0" text="Next" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                  <font>
+                      <Font size="14.0" />
+                  </font>
+              </Button>
+            <ImageView fx:id="correctIncorrectImage" fitHeight="63.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../../resources/correct.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </GridPane.margin>
+            </ImageView>
+              <Label fx:id="recordedNumber" alignment="CENTER" contentDisplay="CENTER" prefHeight="104.0" prefWidth="545.0" style="-: rgba(255, 222, 170, 0.8);" text="You said ... instead of ... . Press 'Next' to play the next round" wrapText="true" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                  <font>
+                      <Font size="14.0" />
+                  </font>
+              </Label>
          </children>
-      </AnchorPane>
+      </GridPane>
     </children>
 
 </AnchorPane>

@@ -16,16 +16,13 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
-public class DifficultyChooseController {
-
-    private static Main instance = Main.getInstance();
+public class DifficultyChooseController extends AbstractController{
 
     @FXML
     private Button easyButton, hardButton;
 
     private ObservableList<Table> _data;
     private String _name;
-    private boolean _mathAid;
 
     public DifficultyChooseController(String name, boolean mathAid){
         _name = name;
@@ -63,54 +60,6 @@ public class DifficultyChooseController {
         window.setResizable(false);
         window.setScene(recordScene);
         window.show();
-    }
-
-    /*
-        Button handler for when main menu button is pressed. Switches back to main menu
-         */
-    @FXML
-    private void mainMenuButtonPressed(ActionEvent event){
-        instance.setMainScene();
-    }
-
-    /*
-    Button handler for when help button is pressed. Shows the
-     */
-    @FXML
-    private void helpButtonPressed(ActionEvent event){
-        //TODO show help
-        //If it is Math Aid Module
-        if (_mathAid = true){
-            // Change module
-        }
-        //If it is Practice Module
-        else {
-
-        }
-
-
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("fxml/Help.fxml"));
-            loader.setController(new HelpController());
-            Parent view = loader.load();
-
-            // Access the check view controller and call initData method
-            HelpController controller = loader.getController();
-            Scene helpScene = new Scene(view);
-
-            // Gets the stage information
-            Stage helpStage = new Stage();
-            helpStage.setTitle("Help");
-            helpStage.initModality(Modality.APPLICATION_MODAL);
-            helpStage.setResizable(false);
-            helpStage.setScene(helpScene);
-            helpStage.showAndWait();
-
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
 

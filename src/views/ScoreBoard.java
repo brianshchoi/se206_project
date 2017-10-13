@@ -14,20 +14,13 @@ import java.util.ResourceBundle;
 
 
 public class ScoreBoard implements Initializable {
-
     // Define Table with parameters
     @FXML
     TableView<Table> tableID;
     @FXML
-    TableColumn<Table, Integer> iQuestion;
+    TableColumn<Table, Integer> iQuestion, iNumber;
     @FXML
-    TableColumn<Table, Integer> iNumber;
-    @FXML
-    TableColumn<Table, String> iMaori;
-    @FXML
-    TableColumn<Table, String> iUserRecording;
-    @FXML
-    TableColumn<Table, String> iCorrect;
+    TableColumn<Table, String> iCorrect, iMaori, iUserRecording;
 
     final ObservableList<Table> data = FXCollections.observableArrayList();
 

@@ -22,32 +22,22 @@ import java.util.Optional;
 public class CorrectnessController {
 
     @FXML
-    private Button mainMenuButton;
+    private Button mainMenuButton, nextButton;
     @FXML
-    private Button nextButton;
-    @FXML
-    private Label questionNumberLabel;
-    @FXML
-    private Label recordedNumber;
-    @FXML
-    private Label correctness;
+    private Label questionNumberLabel, recordedNumber, correctness;
     @FXML
     private ImageView correctIncorrectImage;
 
-    private boolean correct;
-    private boolean hardLevel;
-    private boolean mathAid;
-    private String maoriNumber;
-    private String userRecording;
-    private String nickname;
-    private int nextQuestionNumber;
-    private int score;
+    private boolean correct, hardLevel, mathAid;
+    private String maoriNumber, userRecording, nickname;
+    private int nextQuestionNumber, score;
 
     private static final int numQuestions = 10;
     private static Main instance = Main.getInstance();
     private ObservableList<Table> data;
 
-    public void initData(boolean correct, String maori, String userRecording, int questionNumber, int score, boolean hardLevel, ObservableList<Table> data, boolean mathAid, String nickname){
+    public void initData(boolean correct, String maori, String userRecording, int questionNumber, int score,
+                         boolean hardLevel, ObservableList<Table> data, boolean mathAid, String nickname){
         this.correct = correct;
         this.maoriNumber = maori;
         this.userRecording = userRecording;

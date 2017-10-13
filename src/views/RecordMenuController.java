@@ -22,30 +22,18 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class RecordMenuController {
+public class RecordMenuController extends AbstractController{
 	@FXML
 	private Button mainMenuButton, scoreButton, helpButton, playRecordingButton, recordButton;
 	@FXML
 	private Label number, round, info;
-
-	private int playingNumber;
-	private int roundNumber;
-	private int incorrect;
-	private int score;
+	private int playingNumber, roundNumber, incorrect, score;
 	private Map<Integer, String> dictionary = new HashMap<Integer,String>();
-	private String maori;
-	private String userRecording;
-	private String formula;
-	private String nickname;
-	private boolean correctness;
-	private boolean hardLevel;
-	private boolean mathAid;
-
+	private String maori, userRecording, formula, nickname;
+	private boolean correctness, hardLevel, mathAid;
 	private static Main instance = Main.getInstance();
 	private ObservableList<Table> data;
-
-	private final static int EASYLIMIT = 9;
-	private final static int HARDLIMIT = 99;
+	private final static int EASYLIMIT = 9, HARDLIMIT = 99;
 
 	//Load the dictionary with maori words.
 	public void initData(int roundNumber, int score, boolean hardLevel, ObservableList<Table> data, boolean mathAid, String nickname) {
@@ -99,13 +87,6 @@ public class RecordMenuController {
 		round.setText("Question " + Integer.toString(roundNumber));
 	}
 
-	//	private int getRandomNumber(int min, int max) {
-	//		if (min >= max) {
-	//			throw new IllegalArgumentException("max must be greater than min");
-	//		}
-	//		return (int)(Math.random() * (max-min) + 1);
-	//	}
-	//	
 	/*
 	 * Method generating a random number between given range
 	 */
@@ -133,29 +114,7 @@ public class RecordMenuController {
 		System.out.println("Play Recording Button Pressed");
 	}
 
-	/*
-   Button handler for when help button is pressed. Shows the
-    */
-	@FXML
-	private void helpButtonPressed(ActionEvent event){
-		//TODO show help
-		System.out.println("Help Button Pressed");
-	}
 
-	@FXML
-	private void mainMenuPressed(ActionEvent event) throws IOException {
-		Alert alert = new Alert(Alert.AlertType.WARNING);
-		alert.setTitle("Tātai Practise Module - Quit");
-		alert.setHeaderText("WARNING - You will lose all current progress.");
-		alert.setContentText("Are you sure you want to quit?");
-
-		Optional<ButtonType> result = alert.showAndWait();
-		if (result.get() == ButtonType.OK) {
-			instance.setMainScene();
-		} else {
-			alert.close();
-		}
-	}
 
 	@FXML
 	private void scorePressed(ActionEvent event) throws IOException {
