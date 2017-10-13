@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 
 import commons.Table;
 
-public class NicknameController implements Initializable {
+public class NameController {
 
 	@FXML
 	private TextField _nameField;
@@ -29,12 +29,9 @@ public class NicknameController implements Initializable {
 	private Label _errorLabel;
 	private boolean _mathAid;
 
-	public NicknameController(boolean mathAid){
+	public NameController(boolean mathAid){
 		_mathAid = mathAid;
 	}
-
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {}
 
 	@FXML
 	private void submitButtonPressed(ActionEvent event) throws IOException{

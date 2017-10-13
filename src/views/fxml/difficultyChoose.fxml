@@ -16,7 +16,7 @@
             <Image url="@../../resources/background.png" />
          </image>
       </ImageView>
-      <GridPane layoutX="-8.0" layoutY="10.0" prefHeight="550.0" prefWidth="600.0" AnchorPane.bottomAnchor="-10.0" AnchorPane.leftAnchor="-8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="10.0">
+      <GridPane layoutX="-8.0" layoutY="10.0" prefHeight="550.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Button fx:id="hardButton" maxHeight="100.0" maxWidth="327.0" minHeight="100.0" minWidth="140.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="100.0" prefWidth="327.0" text="Hard" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <cursor>
@@ -35,7 +35,7 @@
                   <Insets bottom="50.0" />
                </GridPane.margin>
             </Button>
-            <Label alignment="CENTER" maxHeight="100.0" maxWidth="300.0" minHeight="100.0" minWidth="300.0" prefHeight="100.0" prefWidth="300.0" text="Choose a Difficulty" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Label alignment="CENTER" maxHeight="100.0" maxWidth="595.0" minHeight="82.0" minWidth="300.0" prefHeight="82.0" prefWidth="595.0" text="Choose a Difficulty" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
                   <Font size="30.0" />
                </font>
@@ -54,10 +54,10 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
                <GridPane.margin>
-                  <Insets top="50.0" />
+                  <Insets top="20.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="menuButton" maxHeight="40.0" maxWidth="140.0" minHeight="40.0" minWidth="140.0" mnemonicParsing="false" onAction="#mainMenuPressed" prefHeight="40.0" prefWidth="140.0" text="Main Menu" textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+            <Button fx:id="menuButton" maxHeight="40.0" maxWidth="140.0" minHeight="40.0" minWidth="140.0" mnemonicParsing="false" onAction="#mainMenuPromptPressed" prefHeight="40.0" prefWidth="140.0" text="Main Menu" textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

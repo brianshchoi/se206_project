@@ -15,14 +15,15 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class AbstractController {
-
-    protected boolean _mathAid;
-
     @FXML
     private Label _title, easyLabel, hardLabel;
 
+    protected boolean _mathAid;
     protected static Main instance = Main.getInstance();
 
+    /*
+    Help button handler, shows different text depending on if it is Maths Aid Module or Practice Module
+     */
     @FXML
     protected void helpButtonPressed(ActionEvent event){
         try {
@@ -31,14 +32,14 @@ public class AbstractController {
             loader.setController(new HelpController());
             Parent view = loader.load();
 
-            // Access the check view controller and call initData method
+            //Access the Help controller to set the text in the help menu
             HelpController controller = loader.getController();
             controller.setText(_mathAid);
             Scene helpScene = new Scene(view);
 
             // Gets the stage information
             Stage helpStage = new Stage();
-            helpStage.setTitle("Tātai Practise Module - Scoreboard");
+            helpStage.setTitle("Tātai - Help");
             helpStage.initModality(Modality.APPLICATION_MODAL);
             helpStage.setResizable(false);
             helpStage.setScene(helpScene);
@@ -51,6 +52,9 @@ public class AbstractController {
 
     }
 
+    /*
+    Main menu pressed button handler but with a prompt, so that if user accidentally presses main menu, they can cancel
+     */
     @FXML
     protected void mainMenuPromptPressed(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -66,6 +70,9 @@ public class AbstractController {
         }
     }
 
+    /*
+    Main menu pressed button handler without the prompt.
+     */
     @FXML
     protected void mainMenuPressed(ActionEvent event){
         instance.setMainScene();

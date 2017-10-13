@@ -40,18 +40,25 @@ public class DifficultyChooseController extends AbstractController{
 
         // Access the play view controller and call initData method
         RecordMenuController controller = loader.getController();
-        controller.setData();
 
+        //Easy Math Aid
         if (event.getSource() == easyButton && _mathAid == true){
             controller.initData(1, 0, false, _data, true, _name);
-        } else if (event.getSource() == easyButton && _mathAid == false){
+        }
+        //Easy Practice Module
+        else if (event.getSource() == easyButton && _mathAid == false){
             controller.initData(1, 0, false, _data, false, _name);
-        } else if (event.getSource() == hardButton && _mathAid == true){
+        }
+        //Hard Math Aid
+        else if (event.getSource() == hardButton && _mathAid == true){
             controller.initData(1, 0, true, _data, true, _name);
-        } else if (event.getSource() == hardButton && _mathAid == false){
+        }
+        //Hard Practice Module
+        else if (event.getSource() == hardButton && _mathAid == false){
             controller.initData(1, 0, true, _data, false, _name);
         }
 
+        controller.setData();
         // Gets the stage information
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
