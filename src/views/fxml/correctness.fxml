@@ -45,7 +45,7 @@
                         <Insets />
                     </opaqueInsets>
                 </Label>
-                <Button fx:id="mainmenuButton" alignment="CENTER" contentDisplay="CENTER" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#mainMenuPromptPressed" prefHeight="40.0" prefWidth="140.0" text="Main Menu" GridPane.rowIndex="3">
+                <Button fx:id="mainMenuButton" alignment="CENTER" contentDisplay="CENTER" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#mainMenuPromptPressed" prefHeight="40.0" prefWidth="140.0" text="Main Menu" GridPane.rowIndex="3">
                     <font>
                         <Font size="14.0" />
                     </font>

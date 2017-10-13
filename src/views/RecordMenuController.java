@@ -267,14 +267,15 @@ public class RecordMenuController extends AbstractController{
 			alert.setTitle("Tatai - Incorrect");
 			alert.setHeaderText("Incorrect!");
 			alert.setContentText("You said " + userRecording + ". Press 'OK' to try again.");
-
 			alert.showAndWait();
-
 			info.setText("Please try again. Make sure to say the number clearly.");
 			recordButton.setDisable(false);
 			checkButton.setDisable(true);
 			playRecordButton.setDisable(true);
-		} else if (correctness || incorrect != 1) {
+		}
+		// Condition might be wSystem.out.println("TEST");rong
+		else  { //if (incorrect != 1)
+			System.out.println("condition correct");
 			try {
 				String correct;
 				if (correctness){
@@ -283,24 +284,23 @@ public class RecordMenuController extends AbstractController{
 					correct = "Incorrect";
 				}
 				data.add(new Table(roundNumber,playingNumber,correct, userRecording, maori));
-
 				FXMLLoader loader = new FXMLLoader();
 				loader.setLocation(getClass().getResource("fxml/correctness.fxml"));
-				loader.setController(new CorrectnessController());
+				CorrectnessController controller = new CorrectnessController();
+				loader.setController(controller);
 				Parent view = loader.load();
-
-				// Access the checkButton view controller and call initData method
-				CorrectnessController controller = loader.getController();
 				controller.initData(correctness, maori, userRecording, roundNumber, score, hardLevel, data, mathAid, nickname);
 				controller.setData();
 				Scene viewScene = new Scene(view);
-
 				// Gets the stage information
 				Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
 				window.setScene(viewScene);
 				window.show();
+				System.out.println("309");
+
 			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		}
 	}

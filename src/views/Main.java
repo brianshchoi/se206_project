@@ -32,9 +32,7 @@ public class Main extends Application {
         //Create the stage responsible for all scenes
         _primaryStage = primaryStage;
         _primaryStage.setTitle("Tātai Practice Module");
-//        _primaryStage.setResizable(false);
-        _primaryStage.setMinWidth(400);
-        _primaryStage.setMinHeight(300);
+        _primaryStage.setResizable(false);
         _primaryStage.setOnCloseRequest(e -> windowClose());
         createMainScene();
         setMainScene();
