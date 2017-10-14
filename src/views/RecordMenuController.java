@@ -297,8 +297,6 @@ public class RecordMenuController extends AbstractController{
 
 				window.setScene(viewScene);
 				window.show();
-				System.out.println("309");
-
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

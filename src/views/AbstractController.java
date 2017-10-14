@@ -56,18 +56,23 @@ public class AbstractController {
     Main menu pressed button handler but with a prompt, so that if user accidentally presses main menu, they can cancel
      */
     @FXML
-    protected void mainMenuPromptPressed(ActionEvent event) throws IOException {
+    protected void mainMenuPromptPressed(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Tātai Practise Module - Quit");
         alert.setHeaderText("WARNING - You will lose all current progress.");
         alert.setContentText("Are you sure you want to quit?");
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            instance.setMainScene();
-        } else {
-            alert.close();
+        try{
+            if (result.get() == ButtonType.OK) {
+                instance.setMainScene();
+            } else {
+                alert.close();
+            }
+        } catch (Exception e){
+
         }
+
     }
 
     /*

@@ -31,7 +31,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         //Create the stage responsible for all scenes
         _primaryStage = primaryStage;
-        _primaryStage.setTitle("Tātai Practice Module");
+        _primaryStage.setTitle("Tātai Maths Aid");
         _primaryStage.setResizable(false);
         _primaryStage.setOnCloseRequest(e -> windowClose());
         createMainScene();
@@ -61,13 +61,18 @@ public class Main extends Application {
 
         Optional<ButtonType> result = alert.showAndWait();
 
+
         if (result.get() == ButtonType.OK) {
             Platform.exit();
+        } else {
+            alert.close();
         }
-
     }
 
     public static void main(String[] args) {
         launch(args);
     }
 }
+
+//TODO TAB VIEW so that results and scoreboard both show up
+//TODO Results in the main menu

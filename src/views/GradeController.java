@@ -42,9 +42,7 @@ public class GradeController implements Initializable{
 	@FXML
 	private ImageView feedback;
 	@FXML
-	private Button playAgainEasy;
-	@FXML
-	private Button playAgainHard;
+	private Button playAgainEasy, playAgainHard;
 
 	//Define table for grade
 	@FXML
@@ -52,23 +50,15 @@ public class GradeController implements Initializable{
 	@FXML
 	TableColumn<userTable, Integer> iTotal;
 	@FXML
-	TableColumn<userTable, String> iNickname;
-	@FXML
-	TableColumn<userTable, String> iDate;
+	TableColumn<userTable, String> iNickname, iDate;
 
 	private int score;
-	private String nickname;
-	private boolean hardLevel;
-	private boolean mathAid;
+	private String nickname, FILENAME;
+	private boolean hardLevel, mathAid;
 	private static Main instance = Main.getInstance();
-	private final static int easyToHardBoundary = 8;
-	private final static int numQuestions = 10;
+	private final static int easyToHardBoundary = 8, numQuestions = 10;
 
-	private static final String MATH_FILE = "math_results.csv";
-	private static final String PRACTICE_FILE = "practice_results.csv";
-	private String FILENAME;
-
-
+	private static final String MATH_FILE = "math_results.csv", PRACTICE_FILE = "practice_results.csv";
 	final ObservableList<userTable> data = FXCollections.observableArrayList();
 
 	public void initData(int score, boolean hardLevel, boolean mathAid, String nickname){
@@ -96,21 +86,22 @@ public class GradeController implements Initializable{
 
 	public void setData(){
 		totalScore.setText("Total: " + score + "/" + numQuestions);
-		Image perfect = new Image("/resources/perfect.png");
-		Image good = new Image("/resources/welldone.jpg");
-		Image average = new Image("/resources/keepup.jpg");
-		Image tryBetter = new Image("/resources/try.png");
 		if (score == 10) {
+			Image perfect = new Image("/resources/perfect.png");
 			feedback.setImage(perfect);
 			feedback.setEffect(new Glow());
 		} else if (score == 8 || score == 9) {
+			Image good = new Image("/resources/welldone.jpg");
 			feedback.setImage(good);
 			feedback.setEffect(new Glow());
 		} else if (score > 4 && score < 8) {
+			Image average = new Image("/resources/keepup.jpg");
 			feedback.setImage(average);
 		} else {
+			Image tryBetter = new Image("/resources/try.png");
 			feedback.setImage(tryBetter);
 		}
+
 		if ((score >= easyToHardBoundary && !hardLevel)||(hardLevel)){
 			playAgainHard.setDisable(false);
 		} else {
@@ -129,14 +120,13 @@ public class GradeController implements Initializable{
 
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("fxml/recordMenu.fxml"));
-		loader.setController(new RecordMenuController());
+		RecordMenuController controller = new RecordMenuController();
+		loader.setController(controller);
 		Parent view = loader.load();
 
 		Scene viewScene = new Scene(view);
 
 		// Access the play view controller and call initData method
-		RecordMenuController controller = loader.getController();
-
 		if (event.getSource().equals(playAgainEasy)){
 			controller.initData(1,0,false, newData, mathAid, nickname);
 		} else if (event.getSource().equals(playAgainHard)){
@@ -176,7 +166,7 @@ public class GradeController implements Initializable{
 			}
 			br.close();
 
-		}catch (Exception ex){
+		} catch (Exception ex){
 			ex.printStackTrace();
 		}
 	}

@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -9,53 +14,62 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="620.0" style="-fx-background-color: #ffdeaa;" stylesheets="@../../resources/mainStyle.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="550.0" prefWidth="600.0" style="-fx-background-color: #ffdeaa;" stylesheets="@../../resources/mainStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="500.0" fitWidth="500.0" layoutX="30.0" pickOnBounds="true" style="-fx-opacity: 0.2;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@../../resources/koru-256.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="6.0" layoutY="-3.0" prefHeight="500.0" prefWidth="620.0" style="-fx-background-color: rgba(255, 222, 170, 0.7);" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <GridPane prefHeight="550.0" prefWidth="620.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="275.0" minHeight="10.0" prefHeight="275.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="131.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <Label alignment="CENTER" prefHeight="90.0" prefWidth="620.0" text="Results">
+            <ImageView fx:id="feedback" fitHeight="77.0" fitWidth="308.0" pickOnBounds="true" preserveRatio="true" />
+            <TableView fx:id="gradeTable" prefHeight="300.0" prefWidth="611.0" GridPane.columnSpan="4" GridPane.rowIndex="1">
+               <columns>
+                  <TableColumn fx:id="iNickname" prefWidth="200.0" resizable="false" text="Nickname" />
+                  <TableColumn fx:id="iDate" prefWidth="200.0" resizable="false" text="Date" />
+                  <TableColumn fx:id="iTotal" prefWidth="200.0" resizable="false" text="Total Score" />
+               </columns>
+            </TableView>
+            <Label alignment="CENTER" prefHeight="77.0" prefWidth="620.0" text="Results" GridPane.columnIndex="1">
                <font>
                   <Font size="40.0" />
                </font>
             </Label>
-            <Label fx:id="totalScore" alignment="CENTER_RIGHT" layoutX="17.0" layoutY="379.0" prefHeight="40.0" prefWidth="160.0" text="Total : xx/10" wrapText="true" AnchorPane.bottomAnchor="65.0" AnchorPane.rightAnchor="14.0">
+            <Button fx:id="mainMenuButton" mnemonicParsing="false" onAction="#mainMenuPressed" prefHeight="40.0" prefWidth="140.0" text="Main Menu" GridPane.rowIndex="3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="playAgainEasy" mnemonicParsing="false" onAction="#playAgainPressed" prefHeight="40.0" prefWidth="160.0" text="Play Again - Easy" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="playAgainHard" mnemonicParsing="false" onAction="#playAgainPressed" prefHeight="40.0" prefWidth="160.0" text="Play Again - Hard" GridPane.columnIndex="3" GridPane.rowIndex="3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Label fx:id="totalScore" alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="213.0" text="Total : xx/10" wrapText="true" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2">
                <font>
                   <Font size="25.0" />
                </font>
             </Label>
-            <Button fx:id="mainMenuButton" layoutX="15.0" layoutY="345.0" mnemonicParsing="false" onAction="#mainMenuPressed" prefHeight="40.0" prefWidth="140.0" text="Main Menu" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-            <Button fx:id="playAgainEasy" layoutX="335.0" layoutY="441.0" mnemonicParsing="false" onAction="#playAgainPressed" prefHeight="40.0" prefWidth="160.0" text="Play Again - Easy" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="188.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-            <Button fx:id="playAgainHard" layoutX="493.0" layoutY="447.0" mnemonicParsing="false" onAction="#playAgainPressed" prefHeight="40.0" prefWidth="160.0" text="Play Again - Hard" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-            <AnchorPane fx:id="table" layoutX="43.0" layoutY="114.0" prefHeight="300.0" prefWidth="600.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0">
-               <children>
-                  <TableView fx:id="gradeTable" layoutX="-10.0" prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <columns>
-                        <TableColumn fx:id="iNickname" prefWidth="100.0" resizable="false" text="Nickname" />
-                        <TableColumn fx:id="iDate" prefWidth="154.0" resizable="false" text="Date" />
-                        <TableColumn fx:id="iTotal" prefWidth="144.0" resizable="false" text="Total Score" />
-                     </columns>
-                  </TableView>
-               </children>
-            </AnchorPane>
          </children>
-      </AnchorPane>
+      </GridPane>
 
    </children>
 </AnchorPane>
