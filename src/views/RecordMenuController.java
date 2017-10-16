@@ -1,6 +1,6 @@
 package views;
 
-import commons.Table;
+import commons.ScoreTable;
 import javafx.animation.PauseTransition;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,27 +26,19 @@ public class RecordMenuController extends AbstractController{
 	@FXML
 	private Label number, round, info;
 
-	private int playingNumber;
-	private int roundNumber;
-	private int incorrect;
-	private int score;
+	private int playingNumber, roundNumber, incorrect, score;
 	private Map<Integer, String> dictionary = new HashMap<Integer,String>();
-	private String maori;
-	private String userRecording;
-	private String formula;
-	private String nickname;
-	private boolean correctness;
-	private boolean hardLevel;
-	private boolean mathAid;
+	private String maori, userRecording, formula, nickname;
+	private boolean correctness, hardLevel, mathAid;
 
 	private static Main instance = Main.getInstance();
-	private ObservableList<Table> data;
+	private ObservableList<ScoreTable> data;
 
-	private final static int EASYLIMIT = 9;
-	private final static int HARDLIMIT = 99;
+	private final static int EASYLIMIT = 9, HARDLIMIT = 99;
 
+	//Change to Constructor
 	//Load the dictionary with maori words.
-	public void initData(int roundNumber, int score, boolean hardLevel, ObservableList<Table> data, boolean mathAid, String nickname) {
+	public void initData(int roundNumber, int score, boolean hardLevel, ObservableList<ScoreTable> data, boolean mathAid, String nickname) {
 		this.roundNumber = roundNumber;
 		this.score = score;
 		this.hardLevel = hardLevel;
@@ -66,6 +58,7 @@ public class RecordMenuController extends AbstractController{
 		dictionary.put(10, "tekau");
 	}
 
+	//
 	public void setData(){
 		recordButton.setDisable(false);				// record button enabled
 		playRecordButton.setDisable(true);			// playRecordButton button disabled
@@ -82,6 +75,7 @@ public class RecordMenuController extends AbstractController{
 			}
 			number.setText(Integer.toString(playingNumber));
 		}
+
 		//If the number is between 0 and 10, return from dictionary
 		if (playingNumber > 0 && playingNumber < 11) {
 			maori = dictionary.get(playingNumber);
@@ -96,7 +90,7 @@ public class RecordMenuController extends AbstractController{
 			}
 		}
 		userRecording = "";
-		
+
 		round.setText("Question " + Integer.toString(roundNumber));
 	}
 
@@ -111,7 +105,7 @@ public class RecordMenuController extends AbstractController{
 	}
 
 
-
+	//Button handler for the scoreboard
 	@FXML
 	private void scorePressed(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
@@ -133,6 +127,7 @@ public class RecordMenuController extends AbstractController{
 		scoreBoardStage.showAndWait();
 	}
 
+	//Button handler for the microphone record button
 	@FXML
 	private void recordButtonPressed(ActionEvent ev) throws IOException {
 		System.out.println(maori);
@@ -231,7 +226,7 @@ public class RecordMenuController extends AbstractController{
 	}
 	
 	/*
-	 * Method to playRecordButton back the user recording
+	 * Button handler for replaying recorded audio.
 	 */
 	public void playRecordingPressed(ActionEvent event) {
 		String command = "cd $MYDIR; aplay foo.wav;";
@@ -273,8 +268,7 @@ public class RecordMenuController extends AbstractController{
 			checkButton.setDisable(true);
 			playRecordButton.setDisable(true);
 		}
-		// Condition might be wSystem.out.println("TEST");rong
-		else  { //if (incorrect != 1)
+		else {
 			System.out.println("condition correct");
 			try {
 				String correct;
@@ -283,7 +277,7 @@ public class RecordMenuController extends AbstractController{
 				} else {
 					correct = "Incorrect";
 				}
-				data.add(new Table(roundNumber,playingNumber,correct, userRecording, maori));
+				data.add(new ScoreTable(roundNumber,playingNumber,correct, userRecording, maori));
 				FXMLLoader loader = new FXMLLoader();
 				loader.setLocation(getClass().getResource("fxml/correctness.fxml"));
 				CorrectnessController controller = new CorrectnessController();
@@ -371,17 +365,17 @@ public class RecordMenuController extends AbstractController{
 	public int randomFormula(int leftSide, int rightSide, int operation) {
 		int answer = 0;
 		switch(operation) {
-		case 1:
+		case 1: //Case for addition
 			operation = 1;
 			answer = leftSide + rightSide;
 			formula = formula + " + " + Integer.toString(rightSide);
 			break;
-		case 2:
+		case 2: //Case for subtraction
 			operation = 2;
 			answer = leftSide - rightSide;
 			formula = formula + " - " + Integer.toString(rightSide);
 			break;
-		case 3:
+		case 3: //Case for multiplication
 			operation = 3;
 			answer = leftSide * rightSide;
 			formula = formula + " x " + Integer.toString(rightSide);

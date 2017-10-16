@@ -1,6 +1,6 @@
 package views;
 
-import commons.Table;
+import commons.ScoreTable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,9 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -21,7 +19,7 @@ public class DifficultyChooseController extends AbstractController{
     @FXML
     private Button easyButton, hardButton;
 
-    private ObservableList<Table> _data;
+    private ObservableList<ScoreTable> _data;
     private String _name;
 
     public DifficultyChooseController(String name, boolean mathAid){
@@ -41,6 +39,7 @@ public class DifficultyChooseController extends AbstractController{
         // Access the play view controller and call initData method
         RecordMenuController controller = loader.getController();
 
+        //Change initData to constructor
         //Easy Math Aid
         if (event.getSource() == easyButton && _mathAid == true){
             controller.initData(1, 0, false, _data, true, _name);

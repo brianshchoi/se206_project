@@ -13,13 +13,12 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class Main extends Application {
-    //Singleton instance
     private static Main instance = null;
 
     private static Stage _primaryStage;
     private static Scene _mainScene;
 
-    //Only creates if instance is null - Singleton
+    //Only creates if instance is null
     public static Main getInstance() {
         if (instance == null){
             instance = new Main();
@@ -73,6 +72,3 @@ public class Main extends Application {
         launch(args);
     }
 }
-
-//TODO TAB VIEW so that results and scoreboard both show up
-//TODO Results in the main menu

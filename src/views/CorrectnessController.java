@@ -1,6 +1,6 @@
 package views;
 
-import commons.Table;
+import commons.ScoreTable;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,16 +8,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Optional;
 
 public class CorrectnessController extends AbstractController{
 
@@ -32,10 +29,11 @@ public class CorrectnessController extends AbstractController{
     private int nextQuestionNumber, score;
     private static final int numQuestions = 10;
     private static Main instance = Main.getInstance();
-    private ObservableList<Table> data;
+    private ObservableList<ScoreTable> data;
 
+    //Change to controller
     public void initData(boolean correct, String maori, String userRecording, int questionNumber, int score,
-                         boolean hardLevel, ObservableList<Table> data, boolean mathAid, String nickname){
+                         boolean hardLevel, ObservableList<ScoreTable> data, boolean mathAid, String nickname){
         this.correct = correct;
         this.maoriNumber = maori;
         this.userRecording = userRecording;
@@ -60,7 +58,8 @@ public class CorrectnessController extends AbstractController{
                 recordedNumber.setText("You said " + userRecording + " instead of "+ maoriNumber +". Press 'Next' to play the next round.");
             }
         } else {
-            nextButton.setText("Finish");
+            // If it is the last question
+            nextButton.setText("Finish");               //change button to "Finish"
             if (correct) {
                 correctness.setText("Correct");
                 recordedNumber.setText("You said " + userRecording + " correctly. Press 'Finish' to see your final score.");
@@ -100,7 +99,7 @@ public class CorrectnessController extends AbstractController{
             Scene viewScene = new Scene(view);
             // Access the play view controller and call initData method
             GradeController controller = loader.getController();
-            controller.initData(score, hardLevel, mathAid, nickname);// data
+            controller.initData(score, hardLevel, mathAid, nickname);
             controller.setData();
 
             // Gets the stage information
