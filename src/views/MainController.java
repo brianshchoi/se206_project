@@ -3,7 +3,6 @@ package views;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -12,54 +11,43 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
-public class MainController implements Initializable {
+public class MainController {
 
     @FXML
-    private Button mathsAidButton;
-    @FXML
-    private Button practiceButton;
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
+    private Button mathsAidButton, practiceButton, learnButton;
 
     @FXML
     private void buttonPressed(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         Scene playScene;
         Stage window;
+        boolean mathAid = false;
 
         if (event.getSource() == mathsAidButton){
-            //TODO Change to Maths aid Main Menu, and load controller
-            loader.setLocation(getClass().getResource("NicknameScreen.fxml"));
-            loader.setController(new NicknameController());
-            Parent view = loader.load();
-            playScene = new Scene(view);
-            window = (Stage)((Node)event.getSource()).getScene().getWindow();
-            window.setWidth(500);
-            window.setHeight(300);
-            window.setScene(playScene);
-            window.show();
+            mathAid = true;
+        } else if (event.getSource() == practiceButton){
+            mathAid = false;
         }
 
-        else if (event.getSource() == practiceButton){
-            loader.setLocation(getClass().getResource("PracticeModule.fxml"));
-            loader.setController(new PracticeModuleController());
+        	// learn interface for new users
+        if (event.getSource() == learnButton) {
+        	loader.setLocation(getClass().getResource("fxml/learn.fxml"));
+            loader.setController(new LearnController());
             Parent view = loader.load();
             playScene = new Scene(view);
             window = (Stage)((Node)event.getSource()).getScene().getWindow();
             window.setScene(playScene);
             window.show();
         } else {
-        	loader.setLocation(getClass().getResource("learn.fxml"));
-            loader.setController(new LearnController());
+        	//Changes to nickname screen for those who wants to play
+            loader.setLocation(getClass().getResource("fxml/NameScreen.fxml"));
+            loader.setController(new NameController(mathAid));
             Parent view = loader.load();
             playScene = new Scene(view);
             window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            window.setWidth(600);
+            window.setHeight(300);
             window.setScene(playScene);
             window.show();
         }

@@ -1,7 +1,7 @@
 package views;
 
-import commons.userTable;
-import commons.Table;
+import commons.ScoreTable;
+import commons.UserTable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -42,35 +42,26 @@ public class GradeController implements Initializable{
 	@FXML
 	private ImageView feedback;
 	@FXML
-	private Button playAgainEasy;
-	@FXML
-	private Button playAgainHard;
+	private Button playAgainEasy, playAgainHard;
 
 	//Define table for grade
 	@FXML
-	TableView<userTable> gradeTable;
+	TableView<UserTable> gradeTable;
 	@FXML
-	TableColumn<userTable, Integer> iTotal;
+	TableColumn<UserTable, Integer> iTotal;
 	@FXML
-	TableColumn<userTable, String> iNickname;
-	@FXML
-	TableColumn<userTable, String> iDate;
+	TableColumn<UserTable, String> iNickname, iDate;
 
 	private int score;
-	private String nickname;
-	private boolean hardLevel;
-	private boolean mathAid;
+	private String nickname, FILENAME;
+	private boolean hardLevel, mathAid;
 	private static Main instance = Main.getInstance();
-	private final static int easyToHardBoundary = 8;
-	private final static int numQuestions = 10;
+	private final static int easyToHardBoundary = 8, numQuestions = 10;
 
-	private static final String MATH_FILE = "math_results.csv";
-	private static final String PRACTICE_FILE = "practice_results.csv";
-	private String FILENAME;
+	private static final String MATH_FILE = "math_results.csv", PRACTICE_FILE = "practice_results.csv";
+	final ObservableList<UserTable> data = FXCollections.observableArrayList();
 
-
-	final ObservableList<userTable> data = FXCollections.observableArrayList();
-
+	//Change to constructor
 	public void initData(int score, boolean hardLevel, boolean mathAid, String nickname){
 		this.score = score;
 		this.hardLevel = hardLevel;
@@ -84,7 +75,7 @@ public class GradeController implements Initializable{
 		Date date = new Date();
 		DateFormat dateFormat = new SimpleDateFormat("yy-mm-dd hh:mm");
 		String strDate = dateFormat.format(date);
-		data.add(new userTable(score, nickname, strDate));	// adds the current play data to the tableview
+		data.add(new UserTable(score, nickname, strDate));	// adds the current play data to the tableview
 		loadDataFromFile();									// loads data from previous plays to the tableview
 		try {
 			saveDataToFile();								// saves the current play data to the file
@@ -96,21 +87,22 @@ public class GradeController implements Initializable{
 
 	public void setData(){
 		totalScore.setText("Total: " + score + "/" + numQuestions);
-		Image perfect = new Image("/resources/perfect.png");
-		Image good = new Image("/resources/welldone.jpg");
-		Image average = new Image("/resources/keepup.jpg");
-		Image tryBetter = new Image("/resources/try.png");
 		if (score == 10) {
+			Image perfect = new Image("/resources/perfect.png");
 			feedback.setImage(perfect);
 			feedback.setEffect(new Glow());
 		} else if (score == 8 || score == 9) {
+			Image good = new Image("/resources/welldone.jpg");
 			feedback.setImage(good);
 			feedback.setEffect(new Glow());
 		} else if (score > 4 && score < 8) {
+			Image average = new Image("/resources/keepup.jpg");
 			feedback.setImage(average);
 		} else {
+			Image tryBetter = new Image("/resources/try.png");
 			feedback.setImage(tryBetter);
 		}
+
 		if ((score >= easyToHardBoundary && !hardLevel)||(hardLevel)){
 			playAgainHard.setDisable(false);
 		} else {
@@ -125,18 +117,17 @@ public class GradeController implements Initializable{
 
 	@FXML
 	private void playAgainPressed(ActionEvent event) throws IOException {
-		ObservableList<Table> newData = FXCollections.observableArrayList();
+		ObservableList<ScoreTable> newData = FXCollections.observableArrayList();
 
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("recordMenu.fxml"));
-		loader.setController(new RecordMenuController());
+		loader.setLocation(getClass().getResource("fxml/recordMenu.fxml"));
+		RecordMenuController controller = new RecordMenuController();
+		loader.setController(controller);
 		Parent view = loader.load();
 
 		Scene viewScene = new Scene(view);
 
 		// Access the play view controller and call initData method
-		RecordMenuController controller = loader.getController();
-
 		if (event.getSource().equals(playAgainEasy)){
 			controller.initData(1,0,false, newData, mathAid, nickname);
 		} else if (event.getSource().equals(playAgainHard)){
@@ -153,9 +144,9 @@ public class GradeController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		iTotal.setCellValueFactory(new PropertyValueFactory<userTable, Integer>("Total"));
-		iNickname.setCellValueFactory(new PropertyValueFactory<userTable, String>("Nickname"));
-		iDate.setCellValueFactory(new PropertyValueFactory<userTable, String>("Date"));
+		iTotal.setCellValueFactory(new PropertyValueFactory<UserTable, Integer>("Total"));
+		iNickname.setCellValueFactory(new PropertyValueFactory<UserTable, String>("Nickname"));
+		iDate.setCellValueFactory(new PropertyValueFactory<UserTable, String>("Date"));
 		gradeTable.setItems(data);
 	}
 
@@ -172,11 +163,11 @@ public class GradeController implements Initializable{
 
 			while ((line = br.readLine()) != null){
 				array = line.split(",");		// read the file, split it by ',' and put them into columns of the tableview
-				gradeTable.getItems().add(new userTable(Integer.parseInt(array[0]), array[1], array[2]));
+				gradeTable.getItems().add(new UserTable(Integer.parseInt(array[0]), array[1], array[2]));
 			}
 			br.close();
 
-		}catch (Exception ex){
+		} catch (Exception ex){
 			ex.printStackTrace();
 		}
 	}
@@ -192,12 +183,12 @@ public class GradeController implements Initializable{
 			int size = data.size();					// only save last 20 results to the file
 			if (size < 21) {
 				for (int i = size; i > 0 ; i--) {
-					String text = data.get(i-1).getTotal().toString() + "," + data.get(i-1).getNickname() + "," + data.get(i-1).getDate() + "\n";
+					String text = data.get(i-1).getScore().toString() + "," + data.get(i-1).getNickname() + "," + data.get(i-1).getDate() + "\n";
 					writer.write(text);
 				}
 			} else {
 				for (int i = size; i > size - 20 ; i--) {
-					String text = data.get(i-1).getTotal().toString() + "," + data.get(i-1).getNickname() + "," + data.get(i-1).getDate() + "\n";
+					String text = data.get(i-1).getScore().toString() + "," + data.get(i-1).getNickname() + "," + data.get(i-1).getDate() + "\n";
 					writer.write(text);
 				}
 			}

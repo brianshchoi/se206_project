@@ -3,7 +3,8 @@ package commons;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class Table {
+public class ScoreTable {
+    //Table property responsible for Ranking
 
     private final SimpleIntegerProperty rQuestion;
     private final SimpleIntegerProperty rNumber;
@@ -11,8 +12,7 @@ public class Table {
     private final SimpleStringProperty rUserRecording;
     private final SimpleStringProperty rMaori;
 
-
-    public Table(int rQuestion, int rNumber, String rCorrect, String rUserRecording, String rMaori){
+    public ScoreTable(int rQuestion, int rNumber, String rCorrect, String rUserRecording, String rMaori){
         this.rQuestion = new SimpleIntegerProperty(rQuestion);
         this.rNumber = new SimpleIntegerProperty(rNumber);
         this.rCorrect = new SimpleStringProperty(rCorrect);

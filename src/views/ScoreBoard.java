@@ -1,6 +1,6 @@
 package views;
 
-import commons.Table;
+import commons.ScoreTable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,34 +15,27 @@ import java.util.ResourceBundle;
 
 public class ScoreBoard implements Initializable {
 
-    // Define Table with parameters
+    // Define ScoreTable with parameters
     @FXML
-    TableView<Table> tableID;
+    TableView<ScoreTable> tableID;
     @FXML
-    TableColumn<Table, Integer> iQuestion;
+    TableColumn<ScoreTable, Integer> iQuestion, iNumber;
     @FXML
-    TableColumn<Table, Integer> iNumber;
-    @FXML
-    TableColumn<Table, String> iMaori;
-    @FXML
-    TableColumn<Table, String> iUserRecording;
-    @FXML
-    TableColumn<Table, String> iCorrect;
+    TableColumn<ScoreTable, String> iMaori, iUserRecording, iCorrect;
 
-    final ObservableList<Table> data = FXCollections.observableArrayList();
+    final ObservableList<ScoreTable> data = FXCollections.observableArrayList();
 
-    public void setData(ObservableList<Table> scores) {
+    public void setData(ObservableList<ScoreTable> scores) {
         data.addAll(scores);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        iQuestion.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Question"));
-        iNumber.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Number"));
-        iCorrect.setCellValueFactory(new PropertyValueFactory<Table, String>("Correct"));
-        iUserRecording.setCellValueFactory(new PropertyValueFactory<Table, String>("UserRecording"));
-        iMaori.setCellValueFactory(new PropertyValueFactory<Table, String>("Maori"));
-
+        iQuestion.setCellValueFactory(new PropertyValueFactory<ScoreTable, Integer>("Question"));
+        iNumber.setCellValueFactory(new PropertyValueFactory<ScoreTable, Integer>("Number"));
+        iCorrect.setCellValueFactory(new PropertyValueFactory<ScoreTable, String>("Correct"));
+        iUserRecording.setCellValueFactory(new PropertyValueFactory<ScoreTable, String>("UserRecording"));
+        iMaori.setCellValueFactory(new PropertyValueFactory<ScoreTable, String>("Maori"));
         tableID.setItems(data);
     }
 }

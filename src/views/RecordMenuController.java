@@ -1,8 +1,7 @@
 package views;
 
-import commons.Table;
+import commons.ScoreTable;
 import javafx.animation.PauseTransition;
-import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,35 +19,26 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
-public class RecordMenuController {
+public class RecordMenuController extends AbstractController{
 	@FXML
-	private Button mainMenuButton, recordButton, scoreButton, check, play;
+	private Button mainMenuButton, recordButton, scoreButton, checkButton, playRecordButton;
 	@FXML
 	private Label number, round, info;
 
-	private int playingNumber;
-	private int roundNumber;
-	private int incorrect;
-	private int score;
+	private int playingNumber, roundNumber, incorrect, score;
 	private Map<Integer, String> dictionary = new HashMap<Integer,String>();
-	private String maori;
-	private String userRecording;
-	private String formula;
-	private String nickname;
-	private boolean correctness;
-	private boolean hardLevel;
-	private boolean mathAid;
+	private String maori, userRecording, formula, nickname;
+	private boolean correctness, hardLevel, mathAid;
 
 	private static Main instance = Main.getInstance();
-	private ObservableList<Table> data;
+	private ObservableList<ScoreTable> data;
 
-	private final static int EASYLIMIT = 9;
-	private final static int HARDLIMIT = 99;
+	private final static int EASYLIMIT = 9, HARDLIMIT = 99;
 
+	//Change to Constructor
 	//Load the dictionary with maori words.
-	public void initData(int roundNumber, int score, boolean hardLevel, ObservableList<Table> data, boolean mathAid, String nickname) {
+	public void initData(int roundNumber, int score, boolean hardLevel, ObservableList<ScoreTable> data, boolean mathAid, String nickname) {
 		this.roundNumber = roundNumber;
 		this.score = score;
 		this.hardLevel = hardLevel;
@@ -68,10 +58,11 @@ public class RecordMenuController {
 		dictionary.put(10, "tekau");
 	}
 
+	//
 	public void setData(){
 		recordButton.setDisable(false);				// record button enabled
-		play.setDisable(true);						// play button disabled
-		check.setDisable(true);						// check button disabled
+		playRecordButton.setDisable(true);			// playRecordButton button disabled
+		checkButton.setDisable(true);				// checkButton button disabled
 		
 		if (mathAid) {								// if playing math aid module, random formula is generated
 			playingNumber = generateQuestion();	
@@ -84,6 +75,7 @@ public class RecordMenuController {
 			}
 			number.setText(Integer.toString(playingNumber));
 		}
+
 		//If the number is between 0 and 10, return from dictionary
 		if (playingNumber > 0 && playingNumber < 11) {
 			maori = dictionary.get(playingNumber);
@@ -98,18 +90,10 @@ public class RecordMenuController {
 			}
 		}
 		userRecording = "";
-		
+
 		round.setText("Question " + Integer.toString(roundNumber));
 	}
 
-	//	private int getRandomNumber(int min, int max) {
-	//		if (min >= max) {
-	//			throw new IllegalArgumentException("max must be greater than min");
-	//		}
-	//		return (int)(Math.random() * (max-min) + 1);
-	//	}
-	//
-	
 	/*
 	 * Method generating a random number between given range
 	 */
@@ -121,29 +105,15 @@ public class RecordMenuController {
 	}
 
 
-	@FXML
-	private void mainMenuPressed(ActionEvent event) throws IOException {
-		Alert alert = new Alert(Alert.AlertType.WARNING);
-		alert.setTitle("Tātai Practise Module - Quit");
-		alert.setHeaderText("WARNING - You will lose all current progress.");
-		alert.setContentText("Are you sure you want to quit?");
-
-		Optional<ButtonType> result = alert.showAndWait();
-		if (result.get() == ButtonType.OK) {
-			instance.setMainScene();
-		} else {
-			alert.close();
-		}
-	}
-
+	//Button handler for the scoreboard
 	@FXML
 	private void scorePressed(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("scoreBoard.fxml"));
+		loader.setLocation(getClass().getResource("fxml/scoreBoard.fxml"));
 		loader.setController(new ScoreBoard());
 		Parent view = loader.load();
 
-		// Access the check view controller and call initData method
+		// Access the checkButton view controller and call initData method
 		ScoreBoard controller = loader.getController();
 		controller.setData(data);
 		Scene scoreBoardScene = new Scene(view);
@@ -157,6 +127,7 @@ public class RecordMenuController {
 		scoreBoardStage.showAndWait();
 	}
 
+	//Button handler for the microphone record button
 	@FXML
 	private void recordButtonPressed(ActionEvent ev) throws IOException {
 		System.out.println(maori);
@@ -167,8 +138,8 @@ public class RecordMenuController {
 		PauseTransition pause = new PauseTransition(Duration.seconds(4));
 		pause.setOnFinished(event -> {
 			info.setText("Number recorded!");
-			check.setDisable(false);
-			play.setDisable(false);
+			checkButton.setDisable(false);
+			playRecordButton.setDisable(false);
 		});
 		pause.play();
 	}
@@ -178,7 +149,7 @@ public class RecordMenuController {
 	 * It uses HTK framework to record for 3 seconds.
 	 */
 	private void recordThread() {
-		//Might need to change so that the recording can be played back with a button, then confirmed with a 'check' button
+		//Might need to change so that the recording can be played back with a button, then confirmed with a 'checkButton' button
 		String command = "cd $MYDIR; " + "rm foo.wav; arecord -d 3 -r 22050 -c 1 -i -t wav -f s16_LE foo.wav; HVite -H HMMs/hmm15/macros -H HMMs/hmm15/hmmdefs -C user/configLR  -w user/wordNetworkNum -o SWT -l '*' -i recout.mlf -p 0.0 -s 5.0  user/dictionaryD user/tiedList foo.wav;";
 		//                "aplay foo.wav;" +
 		//                "rm foo.wav;" +
@@ -255,9 +226,9 @@ public class RecordMenuController {
 	}
 	
 	/*
-	 * Method to play back the user recording
+	 * Button handler for replaying recorded audio.
 	 */
-	public void playPressed(ActionEvent event) {
+	public void playRecordingPressed(ActionEvent event) {
 		String command = "cd $MYDIR; aplay foo.wav;";
 		ProcessBuilder processBuilder = new ProcessBuilder("bash", "-c", command);
 		Map<String, String> environment = processBuilder.environment();
@@ -283,22 +254,22 @@ public class RecordMenuController {
 	}
 	
 	/*
-	 * Method to check for correctness of the user recording
+	 * Method to checkButton for correctness of the user recording
 	 */
-	public void checkPressed(ActionEvent event) {
+	public void checkButtonPressed(ActionEvent event) {
 		if (!correctness && incorrect == 1) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Tatai - Incorrect");
 			alert.setHeaderText("Incorrect!");
 			alert.setContentText("You said " + userRecording + ". Press 'OK' to try again.");
-
 			alert.showAndWait();
-
 			info.setText("Please try again. Make sure to say the number clearly.");
 			recordButton.setDisable(false);
-			check.setDisable(true);
-			play.setDisable(true);
-		} else if (correctness || incorrect != 1) {
+			checkButton.setDisable(true);
+			playRecordButton.setDisable(true);
+		}
+		else {
+			System.out.println("condition correct");
 			try {
 				String correct;
 				if (correctness){
@@ -306,25 +277,22 @@ public class RecordMenuController {
 				} else {
 					correct = "Incorrect";
 				}
-				data.add(new Table(roundNumber,playingNumber,correct, userRecording, maori));
-
+				data.add(new ScoreTable(roundNumber,playingNumber,correct, userRecording, maori));
 				FXMLLoader loader = new FXMLLoader();
-				loader.setLocation(getClass().getResource("correctness.fxml"));
-				loader.setController(new CorrectnessController());
+				loader.setLocation(getClass().getResource("fxml/correctness.fxml"));
+				CorrectnessController controller = new CorrectnessController();
+				loader.setController(controller);
 				Parent view = loader.load();
-
-				// Access the check view controller and call initData method
-				CorrectnessController controller = loader.getController();
 				controller.initData(correctness, maori, userRecording, roundNumber, score, hardLevel, data, mathAid, nickname);
 				controller.setData();
 				Scene viewScene = new Scene(view);
-
 				// Gets the stage information
 				Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
 				window.setScene(viewScene);
 				window.show();
 			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		}
 	}
@@ -397,17 +365,17 @@ public class RecordMenuController {
 	public int randomFormula(int leftSide, int rightSide, int operation) {
 		int answer = 0;
 		switch(operation) {
-		case 1:
+		case 1: //Case for addition
 			operation = 1;
 			answer = leftSide + rightSide;
 			formula = formula + " + " + Integer.toString(rightSide);
 			break;
-		case 2:
+		case 2: //Case for subtraction
 			operation = 2;
 			answer = leftSide - rightSide;
 			formula = formula + " - " + Integer.toString(rightSide);
 			break;
-		case 3:
+		case 3: //Case for multiplication
 			operation = 3;
 			answer = leftSide * rightSide;
 			formula = formula + " x " + Integer.toString(rightSide);

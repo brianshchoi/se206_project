@@ -1,7 +1,6 @@
 package views;
 
 import commons.Dictionary;
-import commons.Table;
 
 import java.net.URL;
 import java.util.ResourceBundle;
