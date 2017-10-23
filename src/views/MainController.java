@@ -54,9 +54,15 @@ public class MainController implements Initializable {
             window = (Stage)((Node)event.getSource()).getScene().getWindow();
             window.setScene(playScene);
             window.show();
+        } else {
+        	loader.setLocation(getClass().getResource("learn.fxml"));
+            loader.setController(new LearnController());
+            Parent view = loader.load();
+            playScene = new Scene(view);
+            window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            window.setScene(playScene);
+            window.show();
         }
-
-
 
     }
 }
