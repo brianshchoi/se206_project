@@ -29,6 +29,7 @@
     -fx-background-color: linear-gradient(#131313 0%, #424141 100%);
 }
 
+.column-header-background { -fx-table-cell-border-color: transparent;}
 
 .table-view .column-header-background .label{
     -fx-background-color: #ffdeaa;

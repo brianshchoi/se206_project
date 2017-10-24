@@ -23,7 +23,7 @@ public class LearnController extends ParentController implements Initializable {
 	private Button _14, _15, _38, _39, _54, _60;
 	
 	@FXML
-	private Button iwa, ono, onoII, rima, rimaII, rua, tahi, tekau, toru, waru, waruII, wha, whitu, whituII, whituIII;
+	private Button iwa, ono, onoII, rima, rimaII, rua, tahi, tekau, toru, waru, waruII, wha, whitu, whituII;
 	
 	@FXML
 	private Button backButton;
@@ -48,7 +48,9 @@ public class LearnController extends ParentController implements Initializable {
     		new Dictionary("8","Waru"),
     		new Dictionary("9","Iwa"),
     		new Dictionary("10","Tekau"),
-    		new Dictionary("From 11:","tenth + mā + digit")
+    		new Dictionary("11 ~ 19","Tekau + mā + ones digit"),
+			new Dictionary("20, ..., 90(Ends with 0)", "Tens digit + Tekau"),
+			new Dictionary("21, ..., 99(Ends with 1~9)", "Tens digit + Tekau + mā + ones digit")
     		);
     
 	@FXML
