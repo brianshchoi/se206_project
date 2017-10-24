@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class DifficultyChooseController extends AbstractController{
+public class DifficultyChooseController extends ParentController {
 
     @FXML
     private Button easyButton, hardButton;

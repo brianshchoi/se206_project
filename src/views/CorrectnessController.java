@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class CorrectnessController extends AbstractController{
+public class CorrectnessController extends ParentController {
 
     @FXML
     private Button mainMenuButton, nextButton;

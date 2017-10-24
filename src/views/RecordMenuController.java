@@ -20,7 +20,7 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RecordMenuController extends AbstractController{
+public class RecordMenuController extends ParentController {
 	@FXML
 	private Button mainMenuButton, recordButton, scoreButton, checkButton, playRecordButton, skipButton;
 	@FXML

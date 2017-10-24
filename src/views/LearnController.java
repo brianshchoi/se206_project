@@ -16,7 +16,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.media.AudioClip;
 
-public class LearnController extends AbstractController implements Initializable {
+public class LearnController extends ParentController implements Initializable {
 	
 	// Buttons for available recordings
 	@FXML
