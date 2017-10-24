@@ -62,8 +62,8 @@ public class MainController {
             loader.setLocation(getClass().getResource("fxml/learn.fxml"));
             loader.setController(new LearnController());
         } else if (event.getSource() == resultsButton) {
-            loader.setLocation(getClass().getResource("fxml/grade.fxml"));
-            loader.setController(new GradeController());
+            loader.setLocation(getClass().getResource("fxml/results.fxml"));
+            loader.setController(new ResultsController());
         }
 
 
@@ -74,8 +74,6 @@ public class MainController {
         if (event.getSource() == learnButton) {
             window.setWidth(800);
             window.setHeight(400);
-        } else if (event.getSource() == resultsButton) {
-
         }
 
         window.show();

@@ -35,7 +35,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 
-public class GradeController implements Initializable{
+public class GradeController extends ParentController implements Initializable {
 
 	@FXML
 	private Label totalScore;
@@ -108,11 +108,6 @@ public class GradeController implements Initializable{
 		} else {
 			playAgainHard.setDisable(true);
 		}
-	}
-
-	@FXML
-	private void mainMenuPressed(ActionEvent event) throws IOException {
-		instance.setMainScene();
 	}
 
 	@FXML

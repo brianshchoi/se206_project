@@ -22,7 +22,7 @@
                 <Image url="@../../resources/koru-256.png" />
             </image>
         </ImageView>
-        <GridPane prefHeight="550.0" prefWidth="620.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <GridPane fx:id="grid" prefHeight="550.0" prefWidth="620.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="394.0" minWidth="10.0" percentWidth="40.0" prefWidth="357.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="337.0" minWidth="10.0" percentWidth="30.0" prefWidth="159.0" />
@@ -45,7 +45,7 @@
                         <TableColumn fx:id="iTotal" prefWidth="250.0" resizable="false" text="Total Score" />
                     </columns>
                 </TableView>
-                <Label alignment="CENTER" prefHeight="65.0" prefWidth="620.0" text="Results" GridPane.columnSpan="3">
+                <Label alignment="CENTER" prefHeight="65.0" prefWidth="620.0" text="Grade" GridPane.columnSpan="3">
                     <font>
                         <Font size="40.0" />
                     </font>
