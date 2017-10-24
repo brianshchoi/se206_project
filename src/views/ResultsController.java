@@ -16,9 +16,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 public class ResultsController extends ParentController implements Initializable {
@@ -38,10 +35,6 @@ public class ResultsController extends ParentController implements Initializable
 
     private static final String MATHS_FILE = "math_results.csv", PRACTICE_FILE = "practice_results.csv";
     final ObservableList<UserTable> data = FXCollections.observableArrayList();
-
-    public ResultsController(){
-//        gradeTable.setVisible(false);
-    }
 
     /**
      * Loads the saved data from previous plays.
@@ -77,8 +70,9 @@ public class ResultsController extends ParentController implements Initializable
         gradeTable.setItems(data);
     }
 
-
-
+    /*
+    Button handler for picking which result the user wants to see
+     */
     @FXML
     private void resultButtonPressed(ActionEvent event){
         selectLabel.setVisible(false);
