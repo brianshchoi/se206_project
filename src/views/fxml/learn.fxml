@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="300.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111">
+<AnchorPane prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="400.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -18,8 +17,8 @@
                <children>
                   <TableView fx:id="dictionary" prefHeight="195.0" prefWidth="298.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                      <TableColumn fx:id="iNumber" prefWidth="85.0" text="Number" />
-                      <TableColumn fx:id="iMaori" prefWidth="212.0" text="Maori Pronounciation" />
+                      <TableColumn fx:id="iNumber" prefWidth="75.0" text="Number" />
+                      <TableColumn fx:id="iMaori" prefWidth="74.0" text="Maori" />
                     </columns>
                   </TableView>
                </children>
@@ -33,37 +32,38 @@
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button fx:id="tahi" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                        <Button fx:id="rua" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                        <Button fx:id="toru" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="3" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                        <Button fx:id="wha" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                        <Button fx:id="rima" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="5(1)" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                        <Button fx:id="rimaII" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="5(2)" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                        <Button fx:id="ono" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="6(1)" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                        <Button fx:id="onoII" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="6(2)" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                        <Button fx:id="whitu" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="7(1)" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                        <Button fx:id="whituII" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="7(2)" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-                        <Button fx:id="whituIII" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="7(3)" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-                        <Button fx:id="waru" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="8(1)" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-                        <Button fx:id="waruII" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="8(2)" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-                        <Button fx:id="iwa" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="9" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-                        <Button fx:id="teaku" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="10" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-                        <Button fx:id="_14" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="14" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-                        <Button fx:id="_15" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="15" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-                        <Button fx:id="_38" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="38" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-                        <Button fx:id="_39" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="39" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
-                        <Button fx:id="_54" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="54" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
-                        <Button fx:id="_60" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="60" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+                        <Button fx:id="tahi" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Button fx:id="rua" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Button fx:id="toru" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="3" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Button fx:id="wha" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <Button fx:id="rima" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="5(1)" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <Button fx:id="rimaII" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="5(2)" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <Button fx:id="ono" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="6(1)" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                        <Button fx:id="onoII" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="6(2)" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                        <Button fx:id="whitu" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="7(1)" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                        <Button fx:id="whituII" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="7(2)" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                        <Button fx:id="whituIII" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="7(3)" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                        <Button fx:id="waru" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="8(1)" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                        <Button fx:id="waruII" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="8(2)" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                        <Button fx:id="iwa" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="9" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                        <Button fx:id="teaku" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="10" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                        <Button fx:id="_14" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="14" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+                        <Button fx:id="_15" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="15" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+                        <Button fx:id="_38" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="38" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+                        <Button fx:id="_39" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="39" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+                        <Button fx:id="_54" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="54" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+                        <Button fx:id="_60" mnemonicParsing="false" onAction="#play" prefWidth="50.0" text="60" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+                        <Button fx:id="backButton" mnemonicParsing="false" onAction="#mainMenuPressed" text="Back" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
                      </children>
                   </GridPane>
                </children>

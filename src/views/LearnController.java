@@ -16,7 +16,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.media.AudioClip;
 
-public class LearnController implements Initializable {
+public class LearnController extends AbstractController implements Initializable {
 	
 	// Buttons for available recordings
 	@FXML
@@ -24,6 +24,10 @@ public class LearnController implements Initializable {
 	
 	@FXML
 	private Button iwa, ono, onoII, rima, rimaII, rua, tahi, tekau, toru, waru, waruII, wha, whitu, whituII, whituIII;
+	
+	@FXML
+	private Button backButton;
+	private static Main instance = Main.getInstance();
 	
 	// Tableview for a simple dictionary view
 	@FXML

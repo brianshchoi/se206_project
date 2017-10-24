@@ -22,7 +22,7 @@ import java.util.Map;
 
 public class RecordMenuController extends AbstractController{
 	@FXML
-	private Button mainMenuButton, recordButton, scoreButton, checkButton, playRecordButton;
+	private Button mainMenuButton, recordButton, scoreButton, checkButton, playRecordButton, skipButton;
 	@FXML
 	private Label number, round, info;
 
@@ -63,7 +63,7 @@ public class RecordMenuController extends AbstractController{
 		recordButton.setDisable(false);				// record button enabled
 		playRecordButton.setDisable(true);			// playRecordButton button disabled
 		checkButton.setDisable(true);				// checkButton button disabled
-		
+
 		if (mathAid) {								// if playing math aid module, random formula is generated
 			playingNumber = generateQuestion();	
 			number.setText(formula);
@@ -224,7 +224,7 @@ public class RecordMenuController extends AbstractController{
 		});
 		thread.start();
 	}
-	
+
 	/*
 	 * Button handler for replaying recorded audio.
 	 */
@@ -252,38 +252,59 @@ public class RecordMenuController extends AbstractController{
 		});
 		thread.start();
 	}
-	
+
 	/*
-	 * Method to checkButton for correctness of the user recording
+	 * Method for check button for correctness of the user recording and skip button to skip to the next view
 	 */
 	public void checkButtonPressed(ActionEvent event) {
-		if (!correctness && incorrect == 1) {
-			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setTitle("Tatai - Incorrect");
-			alert.setHeaderText("Incorrect!");
-			alert.setContentText("You said " + userRecording + ". Press 'OK' to try again.");
-			alert.showAndWait();
-			info.setText("Please try again. Make sure to say the number clearly.");
-			recordButton.setDisable(false);
-			checkButton.setDisable(true);
-			playRecordButton.setDisable(true);
-		}
-		else {
-			System.out.println("condition correct");
-			try {
-				String correct;
-				if (correctness){
-					correct = "Correct";
-				} else {
-					correct = "Incorrect";
+		if(event.getSource() == checkButton) {
+			if (!correctness && incorrect == 1) {
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setTitle("Tatai - Incorrect");
+				alert.setHeaderText("Incorrect!");
+				alert.setContentText("You said " + userRecording + ". Press 'OK' to try again.");
+				alert.showAndWait();
+				info.setText("Please try again. Make sure to say the number clearly.");
+				recordButton.setDisable(false);
+				checkButton.setDisable(true);
+				playRecordButton.setDisable(true);
+			}
+			else {
+				System.out.println("condition correct");
+				try {
+					String correct;
+					if (correctness){
+						correct = "Correct";
+					} else {
+						correct = "Incorrect";
+					}
+					data.add(new ScoreTable(roundNumber,playingNumber,correct, userRecording, maori));
+					FXMLLoader loader = new FXMLLoader();
+					loader.setLocation(getClass().getResource("fxml/correctness.fxml"));
+					CorrectnessController controller = new CorrectnessController();
+					loader.setController(controller);
+					Parent view = loader.load();
+					controller.initData(correctness, maori, userRecording, roundNumber, score, hardLevel, data, mathAid, nickname);
+					controller.setData();
+					Scene viewScene = new Scene(view);
+					// Gets the stage information
+					Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+					window.setScene(viewScene);
+					window.show();
+				} catch (IOException e) {
+					e.printStackTrace();
 				}
-				data.add(new ScoreTable(roundNumber,playingNumber,correct, userRecording, maori));
+			}
+		} else {
+			try {
+				data.add(new ScoreTable(roundNumber,playingNumber, "skipped", "N/A", maori));
 				FXMLLoader loader = new FXMLLoader();
 				loader.setLocation(getClass().getResource("fxml/correctness.fxml"));
 				CorrectnessController controller = new CorrectnessController();
 				loader.setController(controller);
 				Parent view = loader.load();
-				controller.initData(correctness, maori, userRecording, roundNumber, score, hardLevel, data, mathAid, nickname);
+				controller.initData(false, maori, "N/A", roundNumber, score, hardLevel, data, mathAid, nickname);
 				controller.setData();
 				Scene viewScene = new Scene(view);
 				// Gets the stage information
