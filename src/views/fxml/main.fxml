@@ -71,10 +71,15 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-            <Button fx:id="learnButton" maxHeight="80.0" maxWidth="280.0" minWidth="280.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="80.0" prefWidth="280.0" text="Learn" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Button fx:id="learnButton" maxHeight="80.0" maxWidth="328.0" minWidth="280.0" mnemonicParsing="false" onAction="#learnResultsButtonPressed" prefHeight="80.0" prefWidth="328.0" text="Learn" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
-                  <Font name="System Bold" size="13.0" />
+                  <Font size="15.0" />
                </font></Button>
+            <Button fx:id="resultsButton" maxHeight="80.0" maxWidth="328.0" minWidth="280.0" mnemonicParsing="false" onAction="#learnResultsButtonPressed" prefHeight="80.0" prefWidth="328.0" text="Results" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
          </children>
       </GridPane>
     </children>

@@ -221,10 +221,10 @@
                   </GridPane>
                </children>
             </AnchorPane>
-            <TableView fx:id="dictionary" prefHeight="550.0" prefWidth="235.0">
+            <TableView fx:id="dictionary" prefHeight="350.0" prefWidth="430.0">
               <columns>
                 <TableColumn fx:id="iNumber" editable="false" prefWidth="200.0" resizable="false" sortable="false" text="Number" />
-                <TableColumn fx:id="iMaori" editable="false" prefWidth="225.0" resizable="false" sortable="false" text="Maori" />
+                <TableColumn fx:id="iMaori" editable="false" prefWidth="220.0" resizable="false" sortable="false" text="Maori" />
               </columns>
             </TableView>
          </children>

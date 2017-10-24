@@ -40,6 +40,8 @@ public class Main extends Application {
 
     //Public method to set the primary stage's scene to main menu
     public void setMainScene(){
+        _primaryStage.setWidth(600);
+        _primaryStage.setHeight(550);
         _primaryStage.setScene(_mainScene);
     }
 

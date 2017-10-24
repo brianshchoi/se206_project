@@ -93,12 +93,12 @@ public class CorrectnessController extends ParentController {
         } else {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("fxml/grade.fxml"));
-            loader.setController(new GradeController());
+            GradeController controller = new GradeController();
+            loader.setController(controller);
             Parent view = loader.load();
 
             Scene viewScene = new Scene(view);
             // Access the play view controller and call initData method
-            GradeController controller = loader.getController();
             controller.initData(score, hardLevel, mathAid, nickname);
             controller.setData();
 

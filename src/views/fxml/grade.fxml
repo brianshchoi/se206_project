@@ -27,6 +27,7 @@
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="394.0" minWidth="10.0" percentWidth="40.0" prefWidth="357.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="337.0" minWidth="10.0" percentWidth="30.0" prefWidth="159.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="30.0" prefWidth="100.0" />
+            <ColumnConstraints />
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints maxHeight="97.0" minHeight="10.0" percentHeight="10.0" prefHeight="64.0" vgrow="SOMETIMES" />
@@ -37,11 +38,11 @@
             </rowConstraints>
             <children>
                 <ImageView fx:id="feedback" fitHeight="137.0" fitWidth="434.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="2" />
-                <TableView fx:id="gradeTable" prefHeight="300.0" prefWidth="600.0" GridPane.columnSpan="4" GridPane.rowIndex="1">
+                <TableView fx:id="gradeTable" prefHeight="275.0" prefWidth="600.0" GridPane.columnSpan="4" GridPane.rowIndex="1">
                     <columns>
-                        <TableColumn fx:id="iNickname" prefWidth="220.0" resizable="false" text="Nickname" />
-                        <TableColumn fx:id="iDate" prefWidth="200.0" resizable="false" text="Date" />
-                        <TableColumn fx:id="iTotal" prefWidth="200.0" resizable="false" text="Total Score" />
+                        <TableColumn fx:id="iNickname" prefWidth="245.0" resizable="false" text="Nickname" />
+                        <TableColumn fx:id="iDate" prefWidth="120.0" resizable="false" text="Date" />
+                        <TableColumn fx:id="iTotal" prefWidth="250.0" resizable="false" text="Total Score" />
                     </columns>
                 </TableView>
                 <Label alignment="CENTER" prefHeight="65.0" prefWidth="620.0" text="Results" GridPane.columnSpan="3">
