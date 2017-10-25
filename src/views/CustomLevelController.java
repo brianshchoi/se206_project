@@ -106,29 +106,35 @@ public class CustomLevelController {
 	private void submitPressed(ActionEvent event) throws IOException {
 		// loop through the combobox to get the user selection
 		for (int i=0; i<10; i++) {
-			if (xlist.get(i).getValue() == null || ylist.get(i).getValue() == null) {
+			if (xlist.get(i).getValue() == null || ylist.get(i).getValue() == null || oplist.get(i).getValue() == null) {
 				Alert alert = new Alert(Alert.AlertType.ERROR);
 				alert.setTitle("No input selected!");
 				alert.setHeaderText("Invalid!");
 				alert.setContentText("You must select one input for all variables. Press 'OK' and try again.");
 				alert.showAndWait();
+				start.setDisable(true);
 				break;
+			} else {
+				start.setDisable(false);
 			}
 			int x = (int)xlist.get(i).getValue();
 			int y = (int)ylist.get(i).getValue();
 			String op = (String)oplist.get(i).getValue();
 			questions[i] = formulaGenerator(x,y,op);
 			answers[i] = formulaAnswer(x,y,op);
-			if (answers[i]<1 && answers[i]>99) {
+			if (answers[i]<1 || answers[i]>99) {
 				Alert alert = new Alert(Alert.AlertType.ERROR);
 				alert.setTitle("Invalid question");
 				alert.setHeaderText("Invalid!");
 				alert.setContentText("Answer to the question must lie between 1 and 99. Press 'OK' to re-choose your numbers.");
 				alert.showAndWait();
+				start.setDisable(true);
 				break;
+			} else {
+				start.setDisable(false);
 			}
 		}
-			start.setDisable(false);
+			
 	}
 	
 	@FXML
