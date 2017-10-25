@@ -48,7 +48,7 @@ public class GradeController extends ParentController implements Initializable {
 	@FXML
 	TableView<UserTable> gradeTable;
 	@FXML
-	TableColumn<UserTable, Integer> iTotal;
+	TableColumn<UserTable, Integer> iScore;
 	@FXML
 	TableColumn<UserTable, String> iNickname, iDate;
 
@@ -73,7 +73,7 @@ public class GradeController extends ParentController implements Initializable {
 			FILENAME = PRACTICE_FILE;
 		}
 		Date date = new Date();
-		DateFormat dateFormat = new SimpleDateFormat("yy-mm-dd hh:mm");
+		DateFormat dateFormat = new SimpleDateFormat("hh:mm dd/mm/yy ");
 		String strDate = dateFormat.format(date);
 		data.add(new UserTable(score, nickname, strDate));	// adds the current play data to the tableview
 		loadDataFromFile();									// loads data from previous plays to the tableview
@@ -139,9 +139,9 @@ public class GradeController extends ParentController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		iTotal.setCellValueFactory(new PropertyValueFactory<UserTable, Integer>("Total"));
 		iNickname.setCellValueFactory(new PropertyValueFactory<UserTable, String>("Nickname"));
 		iDate.setCellValueFactory(new PropertyValueFactory<UserTable, String>("Date"));
+		iScore.setCellValueFactory(new PropertyValueFactory<UserTable, Integer>("Score"));
 		gradeTable.setItems(data);
 	}
 

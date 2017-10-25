@@ -64,7 +64,7 @@ public class ResultsController extends ParentController implements Initializable
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        iTotal.setCellValueFactory(new PropertyValueFactory<UserTable, Integer>("Total"));
+        iTotal.setCellValueFactory(new PropertyValueFactory<UserTable, Integer>("Score"));
         iNickname.setCellValueFactory(new PropertyValueFactory<UserTable, String>("Nickname"));
         iDate.setCellValueFactory(new PropertyValueFactory<UserTable, String>("Date"));
         gradeTable.setItems(data);
