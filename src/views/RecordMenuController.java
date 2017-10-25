@@ -1,6 +1,7 @@
 package views;
 
 import commons.ScoreTable;
+import commons.UserTable;
 import javafx.animation.PauseTransition;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,6 +16,8 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
@@ -29,16 +32,18 @@ public class RecordMenuController extends ParentController {
 	private int playingNumber, roundNumber, incorrect, score;
 	private Map<Integer, String> dictionary = new HashMap<Integer,String>();
 	private String maori, userRecording, formula, nickname;
-	private boolean correctness, hardLevel, mathAid;
+	private boolean correctness, hardLevel, mathAid, custom;
 
 	private static Main instance = Main.getInstance();
 	private ObservableList<ScoreTable> data;
 
 	private final static int EASYLIMIT = 9, HARDLIMIT = 99;
+	private final static String FILENAME = "customList.csv";
 
 	//Change to Constructor
 	//Load the dictionary with maori words.
-	public void initData(int roundNumber, int score, boolean hardLevel, ObservableList<ScoreTable> data, boolean mathAid, String nickname) {
+	public void initData(int roundNumber, int score, boolean hardLevel, ObservableList<ScoreTable> data, boolean mathAid, String nickname, boolean custom) {
+		this.custom = custom;
 		this.roundNumber = roundNumber;
 		this.score = score;
 		this.hardLevel = hardLevel;
@@ -64,8 +69,11 @@ public class RecordMenuController extends ParentController {
 		playRecordButton.setDisable(true);			// playRecordButton button disabled
 		checkButton.setDisable(true);				// checkButton button disabled
 
-		if (mathAid) {								// if playing math aid module, random formula is generated
+		if (mathAid && !custom) {								// if playing math aid module, random formula is generated
 			playingNumber = generateQuestion();	
+			number.setText(formula);
+		} else if(custom){
+			loadDataFromFile();
 			number.setText(formula);
 		} else {									// else if playing practice module, random number is generated
 			if (hardLevel){
@@ -284,7 +292,7 @@ public class RecordMenuController extends ParentController {
 					CorrectnessController controller = new CorrectnessController();
 					loader.setController(controller);
 					Parent view = loader.load();
-					controller.initData(correctness, maori, userRecording, roundNumber, score, hardLevel, data, mathAid, nickname);
+					controller.initData(correctness, maori, userRecording, roundNumber, score, hardLevel, data, mathAid, nickname, custom);
 					controller.setData();
 					Scene viewScene = new Scene(view);
 					// Gets the stage information
@@ -304,7 +312,7 @@ public class RecordMenuController extends ParentController {
 				CorrectnessController controller = new CorrectnessController();
 				loader.setController(controller);
 				Parent view = loader.load();
-				controller.initData(false, maori, "N/A", roundNumber, score, hardLevel, data, mathAid, nickname);
+				controller.initData(false, maori, "N/A", roundNumber, score, hardLevel, data, mathAid, nickname, custom);
 				controller.setData();
 				Scene viewScene = new Scene(view);
 				// Gets the stage information
@@ -404,6 +412,32 @@ public class RecordMenuController extends ParentController {
 		}
 
 		return answer;
+	}
+
+	/**
+	 * Loads the saved custom question and answer lists.
+	 */
+	public void loadDataFromFile() {
+		try {
+			File file = new File(FILENAME);
+			file.createNewFile();				// Check for result data file existence and create one if it doesn't exist
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			String line;
+			String[] array;
+			int count = 0;
+			while ((line = br.readLine()) != null){
+				count++;
+				if (count == roundNumber) {
+					array = line.split(",");		// read the file, split it by ',' and put them into columns of the tableview
+					formula = array[0];
+					playingNumber = Integer.parseInt(array[1]);
+				}
+			}
+			br.close();
+
+		} catch (Exception ex){
+			ex.printStackTrace();
+		}
 	}
 
 }

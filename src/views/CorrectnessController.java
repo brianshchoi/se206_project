@@ -24,7 +24,7 @@ public class CorrectnessController extends ParentController {
     private Label questionNumberLabel, recordedNumber, correctness;
     @FXML
     private ImageView correctIncorrectImage;
-    private boolean correct, hardLevel, mathAid;
+    private boolean correct, hardLevel, mathAid, custom;
     private String maoriNumber, userRecording, nickname;
     private int nextQuestionNumber, score;
     private static final int numQuestions = 10;
@@ -33,7 +33,8 @@ public class CorrectnessController extends ParentController {
 
     //Change to controller
     public void initData(boolean correct, String maori, String userRecording, int questionNumber, int score,
-                         boolean hardLevel, ObservableList<ScoreTable> data, boolean mathAid, String nickname){
+                         boolean hardLevel, ObservableList<ScoreTable> data, boolean mathAid, String nickname, boolean custom) {
+		this.custom = custom;
         this.correct = correct;
         this.maoriNumber = maori;
         this.userRecording = userRecording;
@@ -82,7 +83,7 @@ public class CorrectnessController extends ParentController {
             Scene viewScene = new Scene(view);
             // Access the play view controller and call initData method
             RecordMenuController controller = loader.getController();
-            controller.initData(nextQuestionNumber, score, hardLevel, data, mathAid, nickname);
+            controller.initData(nextQuestionNumber, score, hardLevel, data, mathAid, nickname, custom);
             controller.setData();
 
             // Gets the stage information
@@ -99,7 +100,7 @@ public class CorrectnessController extends ParentController {
 
             Scene viewScene = new Scene(view);
             // Access the play view controller and call initData method
-            controller.initData(score, hardLevel, mathAid, nickname);
+            controller.initData(score, hardLevel, mathAid, nickname, custom);
             controller.setData();
 
             // Gets the stage information

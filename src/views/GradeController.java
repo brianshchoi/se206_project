@@ -54,7 +54,7 @@ public class GradeController extends ParentController implements Initializable {
 
 	private int score;
 	private String nickname, FILENAME;
-	private boolean hardLevel, mathAid;
+	private boolean hardLevel, mathAid, custom;
 	private static Main instance = Main.getInstance();
 	private final static int easyToHardBoundary = 8, numQuestions = 10;
 
@@ -62,12 +62,13 @@ public class GradeController extends ParentController implements Initializable {
 	final ObservableList<UserTable> data = FXCollections.observableArrayList();
 
 	//Change to constructor
-	public void initData(int score, boolean hardLevel, boolean mathAid, String nickname){
+	public void initData(int score, boolean hardLevel, boolean mathAid, String nickname, boolean custom) {
+		this.custom = custom;
 		this.score = score;
 		this.hardLevel = hardLevel;
 		this.mathAid = mathAid;
 		this.nickname = nickname;
-		if (mathAid) {
+		if (mathAid || custom) {
 			FILENAME = MATH_FILE;
 		} else {
 			FILENAME = PRACTICE_FILE;
@@ -102,8 +103,10 @@ public class GradeController extends ParentController implements Initializable {
 			Image tryBetter = new Image("/resources/try.png");
 			feedback.setImage(tryBetter);
 		}
-
-		if ((score >= easyToHardBoundary && !hardLevel)||(hardLevel)){
+		if (custom) {
+			playAgainEasy.setDisable(true);
+			playAgainHard.setDisable(true);
+		} else if ((score >= easyToHardBoundary && !hardLevel)||(hardLevel)){
 			playAgainHard.setDisable(false);
 		} else {
 			playAgainHard.setDisable(true);
@@ -124,9 +127,9 @@ public class GradeController extends ParentController implements Initializable {
 
 		// Access the play view controller and call initData method
 		if (event.getSource().equals(playAgainEasy)){
-			controller.initData(1,0,false, newData, mathAid, nickname);
+			controller.initData(1,0,false, newData, mathAid, nickname, custom);
 		} else if (event.getSource().equals(playAgainHard)){
-			controller.initData(1,0,true, newData, mathAid, nickname);
+			controller.initData(1,0,true, newData, mathAid, nickname, custom);
 		}
 		controller.setData();
 
