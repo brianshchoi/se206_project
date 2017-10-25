@@ -91,6 +91,7 @@ public class RecordMenuController extends ParentController {
 			// if number is greater than 10, divide it into tenth and digit parts
 			int tenth = playingNumber / 10;
 			int digit = playingNumber - tenth * 10;
+			//TODO change 11~19
 			if (digit == 0) {
 				maori = dictionary.get(tenth)+"tekau";
 			} else {

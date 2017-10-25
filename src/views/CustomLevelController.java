@@ -37,7 +37,7 @@ public class CustomLevelController {
 	private ComboBox op1, op2, op3, op4, op5, op6, op7, op8, op9, op10;
 
 	@FXML
-	private Button submit, start;
+	private Button submit;
 
 	private int[] answers = new int[10];
 	private String[] questions = new String[10];
@@ -58,9 +58,6 @@ public class CustomLevelController {
 		for (int i=1; i<100; i++) {
 			numbers.add(i);
 		}
-
-		
-		start.setDisable(true);
 		xlist.add(x1);
 		xlist.add(x2);
 		xlist.add(x3);
@@ -105,6 +102,9 @@ public class CustomLevelController {
 	@FXML
 	private void submitPressed(ActionEvent event) throws IOException {
 		// loop through the combobox to get the user selection
+		int listCount = 0;
+		int answerCount = 0;
+
 		for (int i=0; i<10; i++) {
 			if (xlist.get(i).getValue() == null || ylist.get(i).getValue() == null || oplist.get(i).getValue() == null) {
 				Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -112,10 +112,9 @@ public class CustomLevelController {
 				alert.setHeaderText("Invalid!");
 				alert.setContentText("You must select one input for all variables. Press 'OK' and try again.");
 				alert.showAndWait();
-				start.setDisable(true);
 				break;
 			} else {
-				start.setDisable(false);
+				listCount++;
 			}
 			int x = (int)xlist.get(i).getValue();
 			int y = (int)ylist.get(i).getValue();
@@ -126,31 +125,35 @@ public class CustomLevelController {
 				Alert alert = new Alert(Alert.AlertType.ERROR);
 				alert.setTitle("Invalid question");
 				alert.setHeaderText("Invalid!");
-				alert.setContentText("Answer to the question must lie between 1 and 99. Press 'OK' to re-choose your numbers.");
+				alert.setContentText("Answer to the questions must lie between 1 and 99. Press 'OK' to re-choose your numbers.");
 				alert.showAndWait();
-				start.setDisable(true);
 				break;
 			} else {
-				start.setDisable(false);
+				answerCount++;
 			}
 		}
-			
+
+		if (listCount == 10 && answerCount == 10){
+			start(event);
+		}
 	}
-	
-	@FXML
-	private void startPressed(ActionEvent event) throws IOException {
+
+	/*
+	Method to switch to record menu
+	 */
+	private void start(ActionEvent event) throws IOException {
 		saveDataToFile();
 		_data = FXCollections.observableArrayList();
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("fxml/recordMenu.fxml"));
-		loader.setController(new RecordMenuController());
+		RecordMenuController controller = new RecordMenuController();
+		loader.setController(controller);
 		Parent view = loader.load();
 		Scene recordScene = new Scene(view);
-		
+
 		// Access the play view controller and call initData method
-		RecordMenuController controller = loader.getController();
 		controller.initData(1, 0, false, _data, true, _name, true);
-		
+
 		controller.setData();
 		// Gets the stage information
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -172,7 +175,6 @@ public class CustomLevelController {
 	/*
 	 * Method that takes user selections and performs arithmetic operation to get the result
 	 */
-
 	private int formulaAnswer(int x, int y, String op) {
 		int answer = 0;
 		switch(op) {

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -9,7 +13,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane minHeight="550.0" minWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minHeight="550.0" minWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane prefHeight="550.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -31,9 +35,9 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="submit" mnemonicParsing="false" onAction="#submitPressed" text="Submit" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="11">
+            <Button fx:id="submit" mnemonicParsing="false" onAction="#submitPressed" prefHeight="25.0" prefWidth="80.0" text="Submit" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="11">
                <GridPane.margin>
-                  <Insets right="100.0" />
+                  <Insets right="10.0" />
                </GridPane.margin></Button>
             <ComboBox prefHeight="26.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.rowIndex="10" fx:id="x10">
                <GridPane.margin>
@@ -206,11 +210,6 @@
                   <Insets left="50.0" />
                </padding>
             </Label>
-            <Button fx:id="start" mnemonicParsing="false" onAction="#startPressed" text="Start" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="11">
-               <GridPane.margin>
-                  <Insets right="10.0" />
-               </GridPane.margin>
-            </Button>
          </children>
       </GridPane>
    </children>

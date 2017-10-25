@@ -90,5 +90,8 @@ public class DifficultyChooseController extends ParentController {
 		window.show();
 	}
 
+	public void setCustomInvisible(){
+		custom.setVisible(false);
+	}
 
 }
