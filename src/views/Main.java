@@ -59,7 +59,6 @@ public class Main extends Application {
         alert.setTitle("Tātai Practise Module - Quit");
         alert.setHeaderText("WARNING - Quit");
         alert.setContentText("Are you sure you want to quit?");
-
         Optional<ButtonType> result = alert.showAndWait();
 
 
