@@ -175,18 +175,9 @@ public class GradeController extends ParentController implements Initializable {
 		try {
 			File file = new File(FILENAME);
 			writer = new BufferedWriter(new FileWriter(file, true));
-			int size = data.size();					// only save last 20 results to the file
-			if (size < 21) {
-				for (int i = size; i > 0 ; i--) {
-					String text = data.get(i-1).getScore().toString() + "," + data.get(i-1).getNickname() + "," + data.get(i-1).getDate() + "\n";
-					writer.write(text);
-				}
-			} else {
-				for (int i = size; i > size - 20 ; i--) {
-					String text = data.get(i-1).getScore().toString() + "," + data.get(i-1).getNickname() + "," + data.get(i-1).getDate() + "\n";
-					writer.write(text);
-				}
-			}
+			String text = data.get(0).getScore().toString() + "," + data.get(0).getNickname() + "," + data.get(0).getDate() + "\n";
+			writer.write(text);
+
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
