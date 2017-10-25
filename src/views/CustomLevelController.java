@@ -23,11 +23,7 @@ import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
 public class CustomLevelController {
-
-	private ObservableList<Integer> numbers = 
-			FXCollections.observableArrayList(
-					1, 2, 3, 4, 5, 6, 7, 8, 9
-					);
+	
 	private ObservableList<String> operators = 
 			FXCollections.observableArrayList(
 					"+", "-", "x"
@@ -58,6 +54,12 @@ public class CustomLevelController {
 	}
 
 	public void setUp() {
+		ObservableList<Integer> numbers = FXCollections.observableArrayList();
+		for (int i=1; i<100; i++) {
+			numbers.add(i);
+		}
+
+		
 		start.setDisable(true);
 		xlist.add(x1);
 		xlist.add(x2);
