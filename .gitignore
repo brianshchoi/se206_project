@@ -55,3 +55,6 @@ fabric.properties
 .classpath
 .project
 *.csv
+
+.idea/artifacts/
+src/META-INF/
