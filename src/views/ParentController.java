@@ -46,7 +46,7 @@ public class ParentController {
             helpStage.showAndWait();
 
         }
-        catch (IOException e) { cv
+        catch (IOException e) { 
             e.printStackTrace();
         }
 
