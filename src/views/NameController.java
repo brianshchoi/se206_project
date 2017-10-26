@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class NameController {
+public class NameController extends ParentController {
 
 	@FXML
 	private TextField _nameField;

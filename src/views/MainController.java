@@ -42,7 +42,7 @@ public class MainController {
         playScene = new Scene(view);
         window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setWidth(600);
-        window.setHeight(300);
+        window.setHeight(200);
         window.setScene(playScene);
         window.show();
 
