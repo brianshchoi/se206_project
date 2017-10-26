@@ -38,7 +38,7 @@
             <RowConstraints minHeight="10.0" percentHeight="21.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-                <Button fx:id="practiceButton" maxHeight="80.0" maxWidth="327.0" minHeight="80.0" minWidth="140.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="80.0" prefWidth="280.0" text="Practice Module" textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                <Button fx:id="practiceButton" maxHeight="80.0" maxWidth="350.0" minHeight="80.0" minWidth="350.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="80.0" prefWidth="350.0" text="Practice Module" textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                     <opaqueInsets>
                         <Insets />
                     </opaqueInsets>
@@ -60,7 +60,7 @@
                         <Font name="KacstOne Bold" size="59.0" />
                     </font>
                 </Label>
-                <Button fx:id="mathsAidButton" maxHeight="80.0" maxWidth="332.0" minHeight="80.0" minWidth="140.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="80.0" prefWidth="280.0" text="Maths Aid Module" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                <Button fx:id="mathsAidButton" maxHeight="80.0" maxWidth="350.0" minHeight="80.0" minWidth="350.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="80.0" prefWidth="350.0" text="Maths Aid Module" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                     <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                     </padding>
@@ -71,11 +71,11 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-            <Button fx:id="learnButton" maxHeight="80.0" maxWidth="328.0" minWidth="280.0" mnemonicParsing="false" onAction="#learnResultsButtonPressed" prefHeight="80.0" prefWidth="328.0" text="Learn" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Button fx:id="learnButton" maxHeight="80.0" maxWidth="350.0" minWidth="350.0" mnemonicParsing="false" onAction="#learnResultsButtonPressed" prefHeight="80.0" prefWidth="350.0" text="Learn" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
                   <Font name="DejaVu Sans Condensed Bold" size="15.0" />
                </font></Button>
-            <Button fx:id="resultsButton" maxHeight="80.0" maxWidth="328.0" minWidth="280.0" mnemonicParsing="false" onAction="#learnResultsButtonPressed" prefHeight="80.0" prefWidth="328.0" text="Results" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Button fx:id="resultsButton" maxHeight="80.0" maxWidth="350.0" minWidth="350.0" mnemonicParsing="false" onAction="#learnResultsButtonPressed" prefHeight="80.0" prefWidth="350.0" text="Results" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <font>
                   <Font name="DejaVu Sans Condensed Bold" size="15.0" />
                </font>

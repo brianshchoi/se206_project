@@ -74,9 +74,9 @@
                   <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
                </GridPane.margin>
             </Button>
-            <VBox prefHeight="200.0" prefWidth="100.0" spacing="25.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
+            <VBox prefHeight="385.0" prefWidth="472.0" spacing="25.0" GridPane.columnSpan="3" GridPane.rowIndex="2">
                <children>
-                  <Button fx:id="easyButton" maxHeight="100.0" maxWidth="300.0" minHeight="100.0" minWidth="300.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="100.0" prefWidth="300.0" text="Easy" textAlignment="CENTER">
+                  <Button fx:id="easyButton" maxHeight="100.0" maxWidth="350.0" minHeight="100.0" minWidth="350.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="100.0" prefWidth="350.0" text="Easy" textAlignment="CENTER">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -87,7 +87,7 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </padding>
                   </Button>
-                  <Button fx:id="hardButton" maxHeight="100.0" maxWidth="300.0" minHeight="100.0" minWidth="300.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="100.0" prefWidth="300.0" text="Hard" textAlignment="CENTER" wrapText="true">
+                  <Button fx:id="hardButton" maxHeight="100.0" maxWidth="350.0" minHeight="100.0" minWidth="300.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="100.0" prefWidth="350.0" text="Hard" textAlignment="CENTER" wrapText="true">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -101,7 +101,7 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </padding>
                   </Button>
-                  <Button fx:id="custom" maxHeight="113.0" maxWidth="300.0" minHeight="100.0" minWidth="300.0" mnemonicParsing="false" onAction="#customPressed" prefHeight="100.0" prefWidth="300.0" text="Custom" textAlignment="CENTER" wrapText="true">
+                  <Button fx:id="custom" maxHeight="113.0" maxWidth="350.0" minHeight="100.0" minWidth="300.0" mnemonicParsing="false" onAction="#customPressed" prefHeight="100.0" prefWidth="350.0" text="Custom" textAlignment="CENTER" wrapText="true">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -117,7 +117,7 @@
                   </Button>
                </children>
                <GridPane.margin>
-                  <Insets left="150.0" />
+                  <Insets left="125.0" />
                </GridPane.margin>
             </VBox>
          </children>
