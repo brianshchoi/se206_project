@@ -22,7 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
-public class CustomLevelController {
+public class CustomLevelController extends ParentController {
 	
 	private ObservableList<String> operators = 
 			FXCollections.observableArrayList(
