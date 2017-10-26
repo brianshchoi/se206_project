@@ -45,8 +45,6 @@ public class MainController {
         window.setHeight(200);
         window.setScene(playScene);
         window.show();
-
-
     }
 
     /*
