@@ -92,11 +92,7 @@ public class DifficultyChooseController extends ParentController implements Init
 		window.setScene(recordScene);
 		window.show();
 	}
-
-	public void setCustomInvisible(){
-		custom.setVisible(false);
-	}
-
+	
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		if (_mathAid){
